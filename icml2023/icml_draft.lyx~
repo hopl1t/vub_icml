@@ -334,9 +334,22 @@ citet{Alemi2017}
  A proposed optimization method called VIB - 'Deep Variational Information
  Bottleneck' derives an upper bound for the IB objective and minimizes it's
  approximation using Monte Carlo sampling over training data.
- They found that replacing a DNN's deterministic classifier layer with a
- stochastic layer optimized with the VIB objective results in a slight decrease
- in test set accuracy but a significant increase in robustness to adversarial
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{Alemi2017}
+\end_layout
+
+\end_inset
+
+ found that replacing a DNN's deterministic classifier layer with a stochastic
+ layer optimized with the VIB objective results in a slight decrease in
+ test set accuracy but a significant increase in robustness to adversarial
  attacks in complicated classification tasks.
  Similar behavior is demonstrated in the current work as shown in Section
 \begin_inset space ~
@@ -637,7 +650,7 @@ Entropy
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $H_{p}(P)=-\int p(x)log\left(p(x)\right)dx$
+\begin_inset Formula $H_{p}(X)=-\int p(x)log\left(p(x)\right)dx$
 \end_inset
 
 
@@ -1816,7 +1829,7 @@ VUB is in fact VIB regulated by a conditional entropy term
 \begin_inset Formula $-H(Y|Z)$
 \end_inset
 
- similarly to 
+ similarly to the confidence penalty suggested by 
 \begin_inset ERT
 status open
 
@@ -4145,9 +4158,10 @@ cite{Chen2018}
  increase latent smoothness.
  These traits can make it difficult for minor perturbations to significantly
  alter latent semantics.
- Furthermore, the improved results induced by classifier regulation strengthen
- previous studies on the ELBO function suggesting that over powerful decoders
- decrease the quality of learned representations 
+ Furthermore, the enhanced results induced by classifier regularization
+ not only reinforce previous studies on the ELBO function, which suggest
+ that overly powerful decoders diminish the quality learned representations
+ 
 \begin_inset ERT
 status open
 
@@ -4156,6 +4170,19 @@ status open
 
 \backslash
 cite{Alemi2018}
+\end_layout
+
+\end_inset
+
+, but also align with the confidence penalty proposed by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{Pereyra2017}
 \end_layout
 
 \end_inset

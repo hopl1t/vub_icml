@@ -147,12 +147,12 @@ Anonymous submission
 \begin_layout Abstract
 Deep Neural Nets (DNNs) learn latent representations induced by their downstream
  task, objective function and other parameters.
- The quality of data modeling affects the DNN's ability to generalize and
- the coherence of the emerging latent space.
+ The quality of their data modeling affects the DNN's ability to generalize
+ and the coherence of the emerging latent space.
  The Information Bottleneck, IB, offers an optimal information theoretic
  framework for data modeling, however, it is intractable in most settings.
- In recent years attempts were made to combine deep learning with IB both
- for optimization and for explaining the inner workings of deep neural nets.
+ In recent years attempts were made to combine deep learning with the IB
+ both for optimization and for the interpretation of DNNs.
  VAE inspired variational approximations became a popular method to approximate
  bounds on the required mutual information computations.
  This work introduces a new tractable variational upper bound for the IB
@@ -160,12 +160,12 @@ Deep Neural Nets (DNNs) learn latent representations induced by their downstream
  When used as an objective function it enhances the performance of previous
  IB-inspired DNNs in terms of test accuracy while providing similar or superior
  robustness to adversarial attacks.
- These improvments in performence, induced by a tighter bound, strengthen
+ These improvements in performance, induced by a tighter bound, strengthen
  the cause for the IB and it's variational approximations as a framework
  for better representation learning.
- Furthermore, we present practitionares with a method to substantially increase
- adversarial robustness of any classifier DNN while suffering only a slight
- decrease in performence over unseen data.
+ Furthermore, we present practitioners with a simple method to substantially
+ increase adversarial robustness of any classifier DNN while suffering only
+ a slight decrease in performance over unseen data.
  
 \end_layout
 
@@ -223,7 +223,7 @@ cite{Goodfellow2015}
  for all data points from our restricted set of training examples.
  Classic information theory provides tools to optimize compression and transmiss
 ion of data, but it does not provide methods to gauge the relevance of the
- signal to downstream tasks.
+ compressed signal to downstream tasks.
  Methods such as rate distortion 
 \begin_inset ERT
 status open
@@ -290,11 +290,11 @@ cite{Kingma2014}
 \end_inset
 
  (Where 
-\begin_inset Formula $x\in X$
+\begin_inset Formula $X$
 \end_inset
 
  is an observed variable and 
-\begin_inset Formula $z\in Z$
+\begin_inset Formula $Z$
 \end_inset
 
  is unobserved) can be approximated using a chosen variational distribution
@@ -315,7 +315,7 @@ noprefix "false"
 \end_inset
 
 .
- Similarly to VAE 
+ Similarly to VAEs 
 \begin_inset ERT
 status open
 
@@ -328,15 +328,28 @@ citet{Alemi2017}
 
 \end_inset
 
-, proposed using stochastic DNNs as variational approximations for a latent
+ proposed using stochastic DNNs as variational approximations for a latent
  model thus making possible the computations of upper bounds for mutual
  information between the DNN's input, output and hidden layers.
  A proposed optimization method called VIB - 'Deep Variational Information
  Bottleneck' derives an upper bound for the IB objective and minimizes it's
  approximation using Monte Carlo sampling over training data.
- They found that replacing a DNN's deterministic classifier layer with a
- stochastic layer optimized with the VIB objective results in a slight decrease
- in test set accuracy but a significant increase in robustness to adversarial
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{Alemi2017}
+\end_layout
+
+\end_inset
+
+ found that replacing a DNN's deterministic classifier layer with a stochastic
+ layer optimized with the VIB objective results in a slight decrease in
+ test set accuracy but a significant increase in robustness to adversarial
  attacks in complicated classification tasks.
  Similar behavior is demonstrated in the current work as shown in Section
 \begin_inset space ~
@@ -376,9 +389,9 @@ In this study, we adopt the same information theoretic and variational approach
  We then employ a tractable variational approximation for this bound, named
  VUB - 'Variational Upper Bound' and show that it is a tighter bound on
  IB than VIB.
- We proceed to show empirical evidence that VUB substantualy increases test
- accuracy over VIB while providing similar or superior robustness to adversarial
- attacks across several challenging tasks and modalities.
+ We proceed to show empirical evidence that VUB substantially increases
+ test accuracy over VIB while providing similar or superior robustness to
+ adversarial attacks across several challenging tasks and modalities.
  Finally, we discuss these effects in the context of previous work on IB
  and other DNN regularization techniques.
  The conclusion drawn is that while more mutual information between encoding
@@ -398,15 +411,15 @@ cite{Amjad2020}
 
 , the application of IB approximations as objectives to DNNs empirically
  improves regularization, suggesting better data modeling.
- This notion contributes for the adaptation of IB, and it's variational
+ This notion contributes for the adaptation of the IB, and it's variational
  approximations, as an objective to learning tasks and as a theoretic framework
  to gauge and explain regularization.
 \end_layout
 
 \begin_layout Standard
-Apart from theory, we show that VUB can be easily adapted to any classifier
+In addition, we demonstrate that VUB can be easily adapted to any classifier
  DNN, including transformer based NLP classifiers, to substantially increase
- robustness to adversarial attacks with only a small decrease in test accuracy.
+ robustness to adversarial attacks while only slightly decreasing test accuracy.
 \end_layout
 
 \begin_layout Subsection
@@ -424,7 +437,7 @@ We denote random variables with upper cased letters
 \begin_inset Formula $X,Y$
 \end_inset
 
- and their realizations in lower case 
+, and their realizations in lower case 
 \begin_inset Formula $x,y$
 \end_inset
 
@@ -439,7 +452,11 @@ We denote random variables with upper cased letters
 
 .
  Hat notation denotes empirical measurements.
- Let 
+ 
+\end_layout
+
+\begin_layout Standard
+Let 
 \begin_inset Formula $X,Y$
 \end_inset
 
@@ -558,7 +575,7 @@ noprefix "false"
 \begin_inset Formula $p_{\theta}(x)=\int p_{\theta}(x,z)dz$
 \end_inset
 
- doesn't have an analytic solution, and is not optimizable over gradient
+ doesn't have an analytic solution and hence not optimizable over gradient
  descent 
 \begin_inset ERT
 status open
@@ -599,7 +616,10 @@ cite{Kingma2019}
 \end_inset
 
  during optimization.
- In this work information theoretic functions share the same notation for
+\end_layout
+
+\begin_layout Standard
+In this work information theoretic functions share the same notation for
  discrete and continuous settings and are denoted as follows:
 \end_layout
 
@@ -637,7 +657,7 @@ Entropy
 \uwave off
 \noun off
 \color none
-\begin_inset Formula $H_{p}(P)=-\int p(x)log\left(p(x)\right)dx$
+\begin_inset Formula $H_{p}(X)=-\int p(x)log\left(p(x)\right)dx$
 \end_inset
 
 
@@ -664,7 +684,7 @@ entropy
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $CH(P,Q)=-\int p(x)log\left(q(x)\right)dx$
+\begin_inset Formula $CE(P,Q)=-\int p(x)log\left(q(x)\right)dx$
 \end_inset
 
 
@@ -755,27 +775,11 @@ cite{Blahut1972}
  to mitigate signal loss during compression.
  Rate being the signal's compression measured by mutual information between
  input and output signals, and distortion a chosen task-specific function.
- The Information Bottleneck method 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-cite{Tishby1999}
-\end_layout
-
-\end_inset
-
- extends rate-distortion by optimizing a signal's compression to a given
- downstream task by learning an encoding that holds just enough information
- about the source signal to enable a distortion above a chosen positive
- threshold 
-\begin_inset Formula $D$
-\end_inset
-
-.
+ The Information Bottleneck method extends rate-distortion by replacing
+ the tailored distortion functions with mutual information over a target
+ distribution.
+ This allows optimizing a signal's compression to any chosen downstream
+ task.
  Denote 
 \begin_inset Formula $X$
 \end_inset
@@ -788,19 +792,24 @@ cite{Tishby1999}
 \begin_inset Formula $Y$
 \end_inset
 
- the target signal for some specific downstream task, assume a latent variable
- model with the Markov chain 
-\begin_inset Formula $Z\leftarrow X\leftarrow Y$
+ the target signal for some specific downstream task.
+ Let 
+\begin_inset Formula $T$
+\end_inset
+
+ be a positive minimal threshold for the desired distortion and assume a
+ latent variable model with the Markov chain 
+\begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
  and define the distortion function as mutual information between encoding
  and downstream task.
- Hence, we seek an optimal encoding 
+ We seek an optimal encoding 
 \begin_inset Formula $Z:\underset{P(Z|X)}{min}I(X;Z)$
 \end_inset
 
  subject to 
-\begin_inset Formula $I(Z;Y)\ge D$
+\begin_inset Formula $I(Z;Y)\ge T$
 \end_inset
 
 .
@@ -920,7 +929,7 @@ citet{Tishby1999}
 \end_inset
 
  for soft clustering tasks over a discrete and known distribution 
-\begin_inset Formula $p^{*}(x,y)$
+\begin_inset Formula $P^{*}(x,y)$
 \end_inset
 
 .
@@ -995,17 +1004,13 @@ citet{ShwartzZiv2017}
 \end_inset
 
  visualized and analyzed the information plane behavior of DNNs over a toy
- problem with a known joint distribution 
-\begin_inset Formula $p^{*}(x,y)$
-\end_inset
-
-.
+ problem with a known joint distribution.
  Mutual information of the different layers was estimated and used to analyze
  the training process.
  SGD exhibited two separate and sequential behaviors during training: A
- short empirical error minimization phase characterized by larger gradient
- norms and a rapid decrease in distortion, followed by a long compression
- phase with smaller gradient norms and an increase in rate until convergence
+ short empirical error minimization phase (ERM) characterized by larger
+ gradient norms and a rapid decrease in distortion, followed by a long compressi
+on phase with smaller gradient norms and an increase in rate until convergence
  to an optimal IB limit as demonstrated in Figure
 \begin_inset space ~
 \end_inset
@@ -1024,8 +1029,6 @@ ref{shwartz_ziv_info_plane}
 \end_inset
 
 .
-\series bold
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -1036,7 +1039,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename ../../aaai/media/black_box.png
-	scale 37
+	scale 36
 
 \end_inset
 
@@ -1044,16 +1047,12 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-
-\series bold
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Information plane scatters of different DNN layers (colors) in 50 randomized
  networks.
  From 
-\series medium
-
 \begin_inset ERT
 status open
 
@@ -1067,15 +1066,7 @@ citet{ShwartzZiv2017}
 \end_inset
 
 .
-
-\series bold
- Left
-\series default
- are initial weights, 
-\series bold
-Right 
-\series default
-are at 400 epochs.
+ Left are initial weights, Right are at 400 epochs.
  
 \begin_inset Formula $I(T;Y),I(X;T)$
 \end_inset
@@ -1085,9 +1076,7 @@ are at 400 epochs.
 \end_inset
 
  in the current study.
- 
-\series medium
-We believe to be the first to demonstrate similar information plane behavior
+ We believe to be the first to demonstrate similar information plane behavior
  on real-world problems as shown in Figure
 \begin_inset space ~
 \end_inset
@@ -1223,7 +1212,7 @@ citet{Kingma2014}
 \begin_inset Formula $q_{\phi}(z|x)$
 \end_inset
 
- is modeled using a stochastic neural encoder having it's penultimate activation
+ is modeled using a stochastic neural encoder having it's final activation
  used as parameters for the assumed variational distribution (typically
  a spherical gaussian with parameters 
 \begin_inset Formula $\mu,\Sigma$
@@ -1328,7 +1317,7 @@ citet{Alemi2018}
 \begin_inset Formula $p_{\theta}(z)$
 \end_inset
 
-, hence not necesarily a better representation learned.
+, hence not necessarily a better representation learned.
  This gap is attributed to powerful decoders being overfitted.
  It is suggested to keep 
 \begin_inset Formula $\beta$
@@ -1339,7 +1328,10 @@ citet{Alemi2018}
 \end_inset
 
  and monitor the rate-distortion tradeoff as well as cross-entropy loss.
- Additional noteworthy contributions to this field have been made in recent
+\end_layout
+
+\begin_layout Standard
+Additional noteworthy contributions to this field have been made in recent
  years by 
 \begin_inset ERT
 status open
@@ -1405,7 +1397,7 @@ cite{Pereyra2017}
 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "subsec:vub"
+reference "sec:vub"
 plural "false"
 caps "false"
 noprefix "false"
@@ -1417,6 +1409,13 @@ noprefix "false"
 
 \begin_layout Section
 From VIB to VUB
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:vub"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1433,14 +1432,21 @@ cite{Alemi2017}
 
 \end_inset
 
- is approximated as a CH term and a KL regularization term, similarly to
- VAE loss.
+ consists of a Cross-Entropy (
+\begin_inset Formula $CE$
+\end_inset
+
+) term and a KL regularization term, similar to the VAE loss.
  The KL term is derived from a bound on the IB rate term 
 \begin_inset Formula $I(X;Z)$
 \end_inset
 
- and the CH term from a boud on the IB distortion term 
-\begin_inset Formula $I(Z;Y)$
+, while the 
+\begin_inset Formula $CE$
+\end_inset
+
+ term from a bound on the IB distortion term 
+\begin_inset Formula $I(Z;Y)=H(Y)-H(Y|Z)$
 \end_inset
 
 .
@@ -1454,21 +1460,34 @@ cite{Alemi2017}
 \end_inset
 
  is derived into a cross entropy term.
- We argue that since the distribution of 
+ We note that since 
 \begin_inset Formula $Y$
 \end_inset
 
- is indeed unknown we can approximate both entropy terms.
- This bound is then approximated as per VIB.
- We show a tighter theoretical bound assuming 
-\begin_inset Formula $H(Y)>0$
+ is unknown any optimization on 
+\begin_inset Formula $Z$
 \end_inset
 
-, and a tighter empirical bound for any 
-\begin_inset Formula $H(Y)$
+, including 
+\begin_inset Formula $CE$
+\end_inset
+
+, depends on our decoder model of 
+\begin_inset Formula $Y$
 \end_inset
 
 .
+ Following this logic we reintroduce the omitted 
+\begin_inset Formula $H(Y)$
+\end_inset
+
+ term into the objective.
+ We replace the unknown 
+\begin_inset Formula $H(Y)$
+\end_inset
+
+ with a variational approximation of the decoder's entropy, which provides
+ a lower bound.
 \end_layout
 
 \begin_layout Subsection
@@ -1476,19 +1495,24 @@ IB upper bound
 \end_layout
 
 \begin_layout Standard
-For 
+We begin by establishing a new upper bound for the IB functional, starting
+ with the same derivation as shown in VIB.
+\end_layout
+
+\begin_layout Standard
+We begin by bounding 
 \begin_inset Formula $I(Z;X)$
 \end_inset
 
- we follow the same derivation as per VIB:
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-I(Z;X)= & \int\int p^{*}(x,z)log\left(p^{*}(z|x)\right)dxdz\\
-- & \int p^{*}(z)log\left(p^{*}(z)\right)dz\tag{{1.0}}
-\end{align*}
+\begin{align}
+I(Z;X)= & \int\int p^{*}(x,z)log\left(p^{*}(z|x)\right)dxdz\nonumber \\
+- & \int p^{*}(z)log\left(p^{*}(z)\right)dz\label{eq:i_z_x1}
+\end{align}
 
 \end_inset
 
@@ -1500,18 +1524,18 @@ For any probability distribution
 \begin_inset Formula $r$
 \end_inset
 
- we have that: 
-\begin_inset Formula $D_{KL}\left(p^{*}(z),r(z)\right)\ge0\Longrightarrow\int p^{*}(z)log\left(p^{*}(z)\right)dz\ge\int p^{*}(z)log\left(r(z)\right)dz$
+ we have that 
+\begin_inset Formula $D_{KL}\left(p^{*}(z),r(z)\right)\ge0$
 \end_inset
 
- and so:
+, it follows that:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-I(Z;X)\le\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\tag{{1.1}}
-\]
+\begin{equation}
+\int p^{*}(z)log\left(p^{*}(z)\right)dz\ge\int p^{*}(z)log\left(r(z)\right)dz\label{eq:d_kl}
+\end{equation}
 
 \end_inset
 
@@ -1519,19 +1543,14 @@ I(Z;X)\le\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\
 \end_layout
 
 \begin_layout Standard
-For 
-\begin_inset Formula $I(Z;Y)$
-\end_inset
-
- we begin by the same derivation as per VIB:
+And so:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
- & D_{KL}\left(p^{*}(y|z),c(y|z)\right)\ge0\Longrightarrow\\
- & \int p^{*}(y|z)log\left(p^{*}(y|z)\right)dy\ge\int p^{*}(y|z)log\left(c(y|z)\right)dy\tag{{1.2}}
-\end{align*}
+\begin{equation}
+I(Z;X)\overset{\ref{eq:d_kl}}{\le}\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\label{eq:i_z_x2}
+\end{equation}
 
 \end_inset
 
@@ -1539,7 +1558,7 @@ For
 \end_layout
 
 \begin_layout Standard
-and hence for 
+We proceed by bounding 
 \begin_inset Formula $I(Z;Y)$
 \end_inset
 
@@ -1547,12 +1566,22 @@ and hence for
 \end_layout
 
 \begin_layout Standard
+For any probability distribution 
+\begin_inset Formula $c$
+\end_inset
+
+ we have that 
+\begin_inset Formula $D_{KL}\left(p^{*}(y|z),c(y|z)\right)\ge0$
+\end_inset
+
+, it follows that:
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)dydz\\
-\overset{\text{\text{(1.0)}}}{\ge} & \int\int p^{*}(y|z)p^{*}(z)log\left(\frac{c(y|z)}{p^{*}(y)}\right)dydz\\
-\overset{\text{Total probability}}{=} & \int\int p^{*}(y,z)log\left(c(y|z)\right)+H_{p^{*}}(Y)\tag{{1.3}}
-\end{align*}
+\begin{equation}
+\int p^{*}(y|z)log\left(p^{*}(y|z)\right)dy\ge\int p^{*}(y|z)log\left(c(y|z)\right)dy\label{eq:d_kl2}
+\end{equation}
 
 \end_inset
 
@@ -1560,7 +1589,28 @@ I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)
 \end_layout
 
 \begin_layout Standard
-We proceed without discarding the entropy of 
+And so:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)dydz\nonumber \\
+\overset{\text{\ref{eq:d_kl2}}}{\ge} & \int\int p^{*}(y|z)p^{*}(z)log\left(\frac{c(y|z)}{p^{*}(y)}\right)dydz\nonumber \\
+\overset{\text{}}{=} & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz+H_{p^{*}}(Y)\label{eq:i_z_y}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We continue bounding 
+\begin_inset Formula $I(Z;Y)$
+\end_inset
+
+ without discarding the entropy of 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -1569,13 +1619,10 @@ We proceed without discarding the entropy of
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\ge & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz+H_{p^{*}}(Y)\\
-= & -CH\left(p^{*}(y),c(y)\right)+H_{p^{*}}(Y)\\
-\ge & -CH\left(p^{*}(y),c(y)\right)+min\left\{ H_{p^{*}}(Y),H_{c}(Y|Z)\right\} \\
-= & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz\\
-+ & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \tag{{2.0}}
-\end{align*}
+\begin{align}
+\ge & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz\nonumber \\
++ & min\left\{ H_{p^{*}}(Y),H_{c}(Y|Z)\right\} \label{eq:i_z_y2}
+\end{align}
 
 \end_inset
 
@@ -1587,42 +1634,16 @@ We further develop this term using the markov chain
 \begin_inset Formula $Z\leftarrow X\leftarrow Y$
 \end_inset
 
- and total probability, as done in 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{1.2}
-\end_layout
-
-\end_inset
-
-:
+ and total probability:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
- & I(Z;Y)\ge\\
- & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\\
-- & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \tag{{2.1}}
-\end{align*}
-
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{2.1}
-\end_layout
+\begin{align}
+ & I(Z;Y)\ge\nonumber \\
+ & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\nonumber \\
+- & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:i_z_y3}
+\end{align}
 
 \end_inset
 
@@ -1634,8 +1655,13 @@ We define
 \begin_inset Formula $L_{UB}$
 \end_inset
 
- - an upper bound for IB using the bound on the distortion term derived
- in 
+: A new upper bound for the IB functional.
+ 
+\begin_inset Formula $L_{UB}$
+\end_inset
+
+ is composed of the new bound on the distortion term derived in Equation
+ 
 \begin_inset ERT
 status open
 
@@ -1643,12 +1669,13 @@ status open
 
 
 \backslash
-ref{2.1}
+ref{eq:i_z_y3}
 \end_layout
 
 \end_inset
 
- and the bound on the rate term derived in 
+ together with the previously bound on the rate term derived in Equation
+ 
 \begin_inset ERT
 status open
 
@@ -1656,7 +1683,7 @@ status open
 
 
 \backslash
-ref{1.3}
+ref{eq:i_z_x2}
 \end_layout
 
 \end_inset
@@ -1666,12 +1693,12 @@ ref{1.3}
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
- & L_{UB}\equiv\\
- & \int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\\
-- & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\\
-+ & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \tag{{2.2}}
-\end{align*}
+\begin{align}
+ & L_{UB}\equiv\nonumber \\
+ & \int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\nonumber \\
+- & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\nonumber \\
++ & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:l_ub}
+\end{align}
 
 \end_inset
 
@@ -1695,25 +1722,12 @@ Variational approximation
 \end_layout
 
 \begin_layout Standard
-We follow the same variational approach as in VIB and in particular in 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{1.5}
-\end_layout
-
-\end_inset
-
-.
+We follow the same variational approach as in VIB.
  We define 
 \begin_inset Formula $L_{VUB}$
 \end_inset
 
- as a new tractable upper bound for IB.
+ as a new tractable upper bound for the IB functional.
  Let 
 \begin_inset Formula $p^{*}(x,y,z)$
 \end_inset
@@ -1735,11 +1749,15 @@ ref{1.5}
 \end_inset
 
 .
- Since 
+ We reintroduce 
+\begin_inset Formula $\beta$
+\end_inset
+
+ to allow tuning of the KL term and replace the intractable 
 \begin_inset Formula $p^{*}(z)$
 \end_inset
 
- is intractable we use a variational approximation 
+ is with the variational approximation 
 \begin_inset Formula $r(z)$
 \end_inset
 
@@ -1748,14 +1766,14 @@ ref{1.5}
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
- & L_{VUB}\equiv\tag{{2.3}}\\
- & -\int\int\int p^{*}(x)p^{*}(y|x)e_{\phi}(z|x)log\left(c_{\lambda}(y|z)\right)dxdydz\\
-+ & \beta\int\int\int p^{*}(x)e_{\phi}(z|x)log\left(\frac{e_{\phi}(z|x)}{r(z)}\right)dxdydz\\
-- & min\Bigg\{ H_{p^{*}}(Y),\\
- & -\int\int\int p^{*}(x)e_{\phi}(z|x)c_{\lambda}(y|z)log\left(c_{\lambda}(y|z)\right)dxdydz\Bigg\}\\
-\ge & L_{IB}
-\end{align*}
+\begin{align}
+ & L_{VUB}\equiv\nonumber \\
+ & \beta\int\int p^{*}(x)e_{\phi}(z|x)log\left(\frac{e_{\phi}(z|x)}{r(z)}\right)dxdz\nonumber \\
+- & \int\int\int p^{*}(x)p^{*}(y|x)e_{\phi}(z|x)log\left(c_{\lambda}(y|z)\right)dxdydz\label{eq:l_vub}\\
+- & min\Bigg\{ H_{p^{*}}(Y),\nonumber \\
+ & -\int\int\int p^{*}(x)e_{\phi}(z|x)c_{\lambda}(y|z)log\left(c_{\lambda}(y|z)\right)dxdydz\Bigg\}\nonumber \\
+\ge & L_{IB}\nonumber 
+\end{align}
 
 \end_inset
 
@@ -1781,20 +1799,7 @@ We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
 \begin_inset Formula $\phi$
 \end_inset
 
- applying the reparameterization trick 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-cite{Kingma2014}
-\end_layout
-
-\end_inset
-
- such that 
+ applying the reparameterization trick such that 
 \begin_inset Formula $e_{\phi}(x)\sim N(\mu,\Sigma)$
 \end_inset
 
@@ -1838,21 +1843,16 @@ cite{Kingma2014}
 \end_inset
 
 .
- We reintroduce 
-\begin_inset Formula $1\le\beta\le0$
-\end_inset
-
- to allow tuning of the decoder entropy term.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
-\begin{align*}
-\hat{L}_{VUB} & \equiv\\
- & \frac{1}{N}\sum_{n=1}^{N}\Bigg[\beta\cdot D_{KL}\left(e_{\phi}(x_{n})\Bigg|\Bigg|r(z)\right)\\
-- & P^{*}(y_{n})\cdot log\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\\
-- & min\left\{ H(\hat{Y}),H\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\right\} \Bigg]\tag{{2.4}}
-\end{align*}
+\begin{align}
+\hat{L}_{VUB} & \equiv\nonumber \\
+ & \frac{1}{N}\sum_{n=1}^{N}\Bigg[\beta\cdot D_{KL}\left(e_{\phi}(x_{n})\Bigg|\Bigg|r(z)\right)\label{eq:l_vub_empirical}\\
+- & P^{*}(y_{n})\cdot log\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\nonumber \\
+- & min\left\{ H(\hat{Y}),H\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\right\} \Bigg]\nonumber 
+\end{align}
 
 \end_inset
 
@@ -1873,11 +1873,11 @@ As in VIB and VAE
 \begin_inset Formula $\Sigma$
 \end_inset
 
- we have.
+.
 \end_layout
 
 \begin_layout Subsection
-Interpertation
+Interpretation
 \end_layout
 
 \begin_layout Standard
@@ -1885,7 +1885,7 @@ VUB is in fact VIB regulated by a conditional entropy term
 \begin_inset Formula $-H(Y|Z)$
 \end_inset
 
- similarly to 
+ similarly to the confidence penalty suggested by 
 \begin_inset ERT
 status open
 
@@ -1901,8 +1901,8 @@ citet{Pereyra2017}
 .
  Hence, VUB adds regularization over the classifier preventing it to overfit
  the embeddings.
- This is a possible remedy to the discrepencies in the ELBO loss observed
- in 
+ This is a possible remedy to the discrepancies in the ELBO loss observed
+ by 
 \begin_inset ERT
 status open
 
@@ -1910,13 +1910,17 @@ status open
 
 
 \backslash
-cite{Alemi2018}
+citet{Alemi2018}
 \end_layout
 
 \end_inset
 
 .
- In terms of tightness we have that VUB is a tighter theoretical bound on
+ 
+\end_layout
+
+\begin_layout Standard
+In terms of tightness we have that VUB is a tighter theoretical bound on
  IB than VIB for any 
 \begin_inset Formula $Y$
 \end_inset
@@ -1945,7 +1949,7 @@ name "sec:Experiments"
 \end_layout
 
 \begin_layout Standard
-We follow the experimental setup used by 
+We follow the experimental setup proposed by 
 \begin_inset ERT
 status open
 
@@ -1958,9 +1962,7 @@ citet{Alemi2017}
 
 \end_inset
 
-.
- In addition we tracked IB metrics to provide quantitive assessment of the
- learning process.
+, extending it to NLP tasks as well.
  Image classification models were trained on the first 500,000 samples of
  the ImageNet 2012 dataset 
 \begin_inset ERT
@@ -1979,7 +1981,7 @@ cite{deng2009imagenet}
 \series bold
  
 \series default
-IMDB
+the IMDB
 \series bold
  
 \series default
@@ -2009,29 +2011,24 @@ cite{maas2011imdb}
 \begin_inset Formula $10^{-4}$
 \end_inset
 
- and regularization terms were clipped not to surpass the CH term to stabilize
- the learning process.
+ and decaying exponentially with a factor of 0.97 every two epochs.
  Batch sizes were 32 for ImageNet and 16 for IMDB.
  We used a single forward pass per sample for inference.
- Each model was trained and evaluated 3 times per 
+ Each model was trained and evaluated 5 times per 
 \begin_inset Formula $\beta$
 \end_inset
 
- value with consistent performance and we display the mean and standard
- deviation per 
-\begin_inset Formula $\beta$
-\end_inset
-
- setting.
- We tried 
+ value with consistent performance.
+ Beta values of 
 \begin_inset Formula $\beta=10^{-i}$
 \end_inset
 
  for 
-\begin_inset Formula $i\in\{0,1,2,3\}$
+\begin_inset Formula $i\in\{1,2,3\}$
 \end_inset
 
- since previous studies indicated this is the best range for VIB 
+ were tested since previous studies indicated this is the best range for
+ VIB 
 \begin_inset ERT
 status open
 
@@ -2045,20 +2042,10 @@ cite{Alemi2017,Alemi2018}
 \end_inset
 
 .
- We've also tried a few 
-\begin_inset Formula $\beta>1$
-\end_inset
-
-, 
-\begin_inset Formula $\beta<10^{-3}$
-\end_inset
-
- values to verify that indeed these regions produce non-competitive results.
- Each model was evaluated using test set accuracy, estimated rate and distortion
-, and robustness to adversarial attacks over the test set.
- We utilized several adversarial attacks in our study.
- For image classification, we employed untargeted Fast Gradient Sign (FGS)
- attacks 
+ Each model was evaluated using test set accuracy and robustness to various
+ adversarial attacks over the test set.
+ For image classification we employed the untargeted Fast Gradient Sign
+ (FGS) attack 
 \begin_inset ERT
 status open
 
@@ -2071,11 +2058,11 @@ cite{Goodfellow2015}
 
 \end_inset
 
- as well as targeted 
+ as well as the targeted CW 
 \begin_inset Formula $L_{2}$
 \end_inset
 
- optimization attacks 
+ optimization attack 
 \begin_inset ERT
 status open
 
@@ -2091,7 +2078,7 @@ cite{Kaiwen2018}
 \end_inset
 
 .
- For text classification, we used the Deep Word Bug method 
+ For text classification we used the untargeted Deep Word Bug attack 
 \begin_inset ERT
 status open
 
@@ -2106,9 +2093,22 @@ cite{Morris2020}
 
 \end_inset
 
+ as well as the untargeted PWWS attack 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{ren2019pwws}
+\end_layout
+
+\end_inset
+
 .
- Code to reconstruct the experiments is provided in the code & data appendix.
  All models were trained using an Nvidia RTX3080 GPU.
+ Code to reconstruct the experiments is provided in the code & data appendix.
 \end_layout
 
 \begin_layout Subsection
@@ -2143,6 +2143,7 @@ Evaluation and analysis
 
 \begin_layout Standard
 \begin_inset Float table
+placement h
 wide false
 sideways false
 status open
@@ -2150,17 +2151,15 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="7">
-<features booktabs="true" tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="middle" width="2.7pheight%">
+<lyxtabular version="3" rows="11" columns="5">
+<features booktabs="true" tabularvalignment="middle" tabularwidth="8cm">
 <column alignment="center" valignment="middle" width="2.7pheight%">
 <column alignment="center" valignment="middle" width="2.7pheight%">
 <column alignment="center" valignment="middle" width="2.7pheight%">
 <column alignment="center" valignment="middle" width="2.7pheight%">
 <column alignment="center" valignment="middle" width="2.7pheight%">
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2174,7 +2173,7 @@ status open
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2189,7 +2188,7 @@ Val
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2203,7 +2202,7 @@ Val
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2217,7 +2216,7 @@ Val
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2232,39 +2231,9 @@ CW
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-R
-\begin_inset Formula $\uparrow$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-D
-\begin_inset Formula $\uparrow$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2311,27 +2280,9 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2340,7 +2291,7 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2351,7 +2302,7 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2362,7 +2313,7 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2373,7 +2324,7 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2384,27 +2335,9 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
--
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
--
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2451,27 +2384,9 @@ VIB models
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2483,13 +2398,31 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-72.0%
+73.7%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.1\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+59.5%
 \end_layout
 
 \begin_layout Plain Layout
@@ -2501,31 +2434,13 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-62.6%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.4\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-66.0%
+63.9%
 \end_layout
 
 \begin_layout Plain Layout
@@ -2537,53 +2452,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-3204
+3917
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm485$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-45
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.2$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-7.99
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.02$
+\begin_inset Formula $\pm291$
 \end_inset
 
 
@@ -2593,7 +2472,7 @@ VIB models
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2605,13 +2484,13 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-71.5%
+72.8%
 \end_layout
 
 \begin_layout Plain Layout
@@ -2623,153 +2502,13 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-60.6%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.3\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-65.8%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.1\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1761
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm235$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-13
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.04$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-4.33
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.02$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $10^{-1}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="middle" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-71.4%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.01\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-72.3%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.6\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-71.3%
+53.5%
 \end_layout
 
 \begin_layout Plain Layout
@@ -2781,17 +2520,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-1602
+62.0%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm366$
+\begin_inset Formula $\pm.1\%$
 \end_inset
 
 
@@ -2799,35 +2538,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-6.3
+3318
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.004$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-1.56
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.004$
+\begin_inset Formula $\pm293$
 \end_inset
 
 
@@ -2837,7 +2558,93 @@ VIB models
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $10^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="middle" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+72.1%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.01\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+58.4%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.1\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+62.0%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.1\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+3318
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm293$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2884,27 +2691,9 @@ VUB models
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2916,17 +2705,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-73.8%
+75.5%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.08\%$
+\begin_inset Formula $\pm.03\%$
 \end_inset
 
 
@@ -2934,31 +2723,13 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-45.1%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.2\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-61.7%
+62.8%
 \end_layout
 
 \begin_layout Plain Layout
@@ -2970,17 +2741,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-788
+66.4%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.32$
+\begin_inset Formula $\pm.1\%$
 \end_inset
 
 
@@ -2988,35 +2759,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-594
+2666
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.003$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-16.68
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.07$
+\begin_inset Formula $\pm140$
 \end_inset
 
 
@@ -3026,7 +2779,7 @@ VUB models
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3038,13 +2791,49 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-73.9%
+75.0%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.05\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+57.6%
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\pm.2\%$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+64.3%
 \end_layout
 
 \begin_layout Plain Layout
@@ -3056,89 +2845,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-44.8%
+1564
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.07\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-61.2%
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.07\%$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-790
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm2.1$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-594
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.002$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-16.47
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.12$
+\begin_inset Formula $\pm218$
 \end_inset
 
 
@@ -3148,7 +2865,7 @@ VUB models
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3160,17 +2877,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-73.7%
+74.8%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm0\%$
+\begin_inset Formula $\pm0.09\%$
 \end_inset
 
 
@@ -3178,17 +2895,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-45.6%
+57.9%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm0\%$
+\begin_inset Formula $\pm.5\%$
 \end_inset
 
 
@@ -3196,17 +2913,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-61.9%
+64.8%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm0\%$
+\begin_inset Formula $\pm.5\%$
 \end_inset
 
 
@@ -3214,53 +2931,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-790
+3575
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm4.6$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-594
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm0$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-16.77
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.11$
+\begin_inset Formula $\pm456$
 \end_inset
 
 
@@ -3281,8 +2962,13 @@ VUB models
 
 \begin_layout Plain Layout
 Image-net evaluation scores for vanilla, VIB and VUB models, average over
- 3 runs with standard deviation.
- First column is performance on the image-net validation set.
+ 5 runs with standard deviation.
+ First column is performance on the image-net validation set (higher is
+ better 
+\begin_inset Formula $\uparrow$
+\end_inset
+
+).
  Second and third columns are the % of successful FGS attacks at 
 \begin_inset Formula $\epsilon=0.1,0.5$
 \end_inset
@@ -3301,14 +2987,6 @@ Image-net evaluation scores for vanilla, VIB and VUB models, average over
 \end_inset
 
  targeted attack (higher is better 
-\begin_inset Formula $\uparrow$
-\end_inset
-
-), forth and fifth columns are final estimated rate (higher is better 
-\begin_inset Formula $\uparrow$
-\end_inset
-
-) and distortion (higher is better 
 \begin_inset Formula $\uparrow$
 \end_inset
 
@@ -3379,36 +3057,20 @@ ref{tab:imagenet_evaluation}
 
 \end_inset
 
- confirm that while VIB reduces performance on the validation set, it significan
-tly improves robustness to adversarial attacks.
+ confirm that while VIB reduces performance on the validation set, it substantia
+lly improves robustness to adversarial attacks.
  Moreover, these results demonstrate that VUB significantly outperforms
- VIB in terms of validation accuracy, resilience to untargeted attacks,
- and estimated rate-distortion.
- However, VIB outperforms VUB in the context of targeted attacks.
+ VIB in terms of validation accuracy while providing competitive robustness
+ to attacks similarly to VIB.
  A comparison of the best VIB and VUB models further substantiates these
  findings, with statistical significance confirmed by a p-value of less
  than 0.05 in a Wilcoxon rank sum test.
 \end_layout
 
 \begin_layout Standard
-VUB allows us to easily estimate rate and distortion in training and plot
- an estimated information curve for real world problems.
- DNNs trained with VUB reproduced the same information plane behavior previously
- demonstrated on toy problems by 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-citet{ShwartzZiv2017}
-\end_layout
-
-\end_inset
-
- for both error minimization and representation compression phases, as shown
- in Figure
+In addition to the evaluation metrics, we measured approximated rate and
+ distortion throughout training and plotted them on the information curve
+ as shown in Figure
 \begin_inset space ~
 \end_inset
 
@@ -3426,6 +3088,26 @@ ref{estimated_info_plane}
 \end_inset
 
 .
+ We notice recurring patterns of distortion reduction followed by rate increase,
+ resembling the ERM and representation compression stages described by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{ShwartzZiv2017}
+\end_layout
+
+\end_inset
+
+.
+
+\series bold
+ 
+\series default
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -3434,8 +3116,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../aaai/media/vub_info_plane.png
-	scale 30
+	filename ../../aaai/media/info_plane_imdb.png
+	scale 31
 
 \end_inset
 
@@ -3446,8 +3128,9 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Estimated information plane metrics per epoch for VUB with 
-\begin_inset Formula $\beta=0.01$
+Estimated information plane metrics per epoch for VUB trained on IMDB with
+ 
+\begin_inset Formula $\beta=0.001$
 \end_inset
 
 .
@@ -3460,7 +3143,7 @@ Estimated information plane metrics per epoch for VUB with
 \end_inset
 
  and 
-\begin_inset Formula $\frac{1}{CH(Y;\hat{Y})}$
+\begin_inset Formula $\frac{1}{CE(Y;\hat{Y})}$
 \end_inset
 
  is used as an analog for 
@@ -3468,8 +3151,25 @@ Estimated information plane metrics per epoch for VUB with
 \end_inset
 
 .
- The epochs have been grouped and color-coded in intervals of 25 epochs
- in the order: Orange (0-25), gray (26-50), red (51-75) and green (76-100).
+ The epochs have been grouped and color-coded in intervals of 30 epochs
+ in the order: Orange (0-30), gray (30-60), yellow (60-90), green (90-120)
+ and red (120-150).
+ We notice recurring patterns of distortion reduction followed by rate increase,
+ resembling the ERM and representation compression stages described by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{ShwartzZiv2017}
+\end_layout
+
+\end_inset
+
+.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "estimated_info_plane"
@@ -3495,59 +3195,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../aaai/media/untargeted_attack_examples_named.png
-	scale 16
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Successful untargeted FGS attack examples.
- Images are perturbations of previously successfully classified instances
- from the ImageNet validation set.
- Perturbation magnitude is determined by the parameter 
-\begin_inset Formula $\epsilon$
-\end_inset
-
- shown on the left, the higher the more perturbed.
- Notice the deterioration of image quality as 
-\begin_inset Formula $\epsilon$
-\end_inset
-
- increases.
- Original and wrongly assigned labels are listed at the top of each image.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:untargeted_examples"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename ../../aaai/media/targeted_cw_attack_examples_named.png
-	scale 28
+	filename /Users/nirweingarten/Desktop/university/idc/thesis/icml/media/two_images/targeted_two_images.png
+	scale 38
 
 \end_inset
 
@@ -3626,13 +3275,6 @@ Evaluation and analysis
 \end_layout
 
 \begin_layout Standard
-\begin_inset space ~
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Text classification evaluation results are shown in Table
 \begin_inset space ~
 \end_inset
@@ -3668,28 +3310,11 @@ ref{tab:text_attack_examples}
 \end_inset
 
 .
- The best VUB and VIB models reach similar results in terms of test set
- evaluation and resilience to the Deep Word Bug attack.
- Interestingly, VUB achieves better rate distortion ratio without a noticeable
- improvement in performance.
- This is further discussed in Section
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{sec:Discussion}
-\end_layout
-
-\end_inset
-
-.
+ In this modality VUB significantly outperforms VIB in both test set accuracy
+ and robustness to both attacks.
+ A comparison of the best VIB and VUB models further substantiates these
+ findings, with statistical significance confirmed by a p-value of less
+ than 0.05 in a Wilcoxon rank sum test.
 \end_layout
 
 \begin_layout Standard
@@ -3701,12 +3326,11 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="11" columns="5">
+<lyxtabular version="3" rows="11" columns="4">
 <features booktabs="true" tabularvalignment="middle">
 <column alignment="center" valignment="top" width="1.9cm">
 <column alignment="center" valignment="top" width="4pheight%">
 <column alignment="center" valignment="top" width="4pheight%">
-<column alignment="center" valignment="top" width="3.2pheight%">
 <column alignment="center" valignment="top" width="4pheight%">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -3753,29 +3377,14 @@ DWB
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-R
-\begin_inset Formula $\uparrow$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-D
-\begin_inset Formula $\uparrow$
+PWWS
+\begin_inset Formula $\downarrow$
 \end_inset
 
 
@@ -3785,7 +3394,7 @@ D
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3814,16 +3423,7 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3865,27 +3465,20 @@ Vanilla model
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
--
-\end_layout
 
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
--
+\series bold
+100%
 \end_layout
 
 \end_inset
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3914,16 +3507,7 @@ VIB models
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -3952,11 +3536,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-95.0%
+91.0%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.4\%$
+\begin_inset Formula $\pm1.0\%$
 \end_inset
 
 
@@ -3970,11 +3554,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-33.6%
+35.1%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm3.8\%$
+\begin_inset Formula $\pm4.4\%$
 \end_inset
 
 
@@ -3982,35 +3566,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-4.17
+41.6%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.07$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-50.35
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm1.78$
+\begin_inset Formula $\pm6.6\%$
 \end_inset
 
 
@@ -4038,11 +3604,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-95.0%
+90.8%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm1\%$
+\begin_inset Formula $\pm0.5\%$
 \end_inset
 
 
@@ -4056,11 +3622,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-35.3%
+41.0%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm3.2\%$
+\begin_inset Formula $\pm4.8\%$
 \end_inset
 
 
@@ -4068,35 +3634,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-1.23
+62.9%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.1$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-35.16
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm.68$
+\begin_inset Formula $\pm14.3\%$
 \end_inset
 
 
@@ -4124,11 +3672,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-94.2%
+89.4%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.2\%$
+\begin_inset Formula $\pm.9\%$
 \end_inset
 
 
@@ -4142,11 +3690,11 @@ VIB models
 \begin_layout Plain Layout
 
 \series bold
-87.9%
+90.0%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm4.2$
+\begin_inset Formula $\pm8.0\%$
 \end_inset
 
 
@@ -4154,35 +3702,17 @@ VIB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-0.58
+99.1%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.005$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-21.16
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm1.56$
+\begin_inset Formula $\pm0.9\%$
 \end_inset
 
 
@@ -4192,7 +3722,7 @@ VIB models
 </cell>
 </row>
 <row>
-<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4221,16 +3751,7 @@ VUB models
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -4259,7 +3780,7 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-95.0%
+93.2%
 \end_layout
 
 \begin_layout Plain Layout
@@ -4277,11 +3798,11 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-32.7%
+27.5%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm3.2\%$
+\begin_inset Formula $\pm2.0\%$
 \end_inset
 
 
@@ -4289,35 +3810,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-220.4
+28.4%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm1.3$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-64.28
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm10.7$
+\begin_inset Formula $\pm1.3\%$
 \end_inset
 
 
@@ -4345,11 +3848,11 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-94.0%
+92.6%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.2\%$
+\begin_inset Formula $\pm.8\%$
 \end_inset
 
 
@@ -4363,11 +3866,11 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-40.7%
+30.8%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm2.7\%$
+\begin_inset Formula $\pm2.0\%$
 \end_inset
 
 
@@ -4375,35 +3878,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-220.2
+50.0%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm.45$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-71.04
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm5.88$
+\begin_inset Formula $\pm4.8\%$
 \end_inset
 
 
@@ -4431,11 +3916,11 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-94.83%
+89.2%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm0.6\%$
+\begin_inset Formula $\pm2.0\%$
 \end_inset
 
 
@@ -4449,11 +3934,11 @@ VUB models
 \begin_layout Plain Layout
 
 \series bold
-46.2%
+99.2%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm5.9\%$
+\begin_inset Formula $\pm0.5\%$
 \end_inset
 
 
@@ -4461,35 +3946,17 @@ VUB models
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 
 \series bold
-220.8
+100%
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Formula $\pm0.2$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\series bold
-38.51
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Formula $\pm4.96$
+\begin_inset Formula $\pm0\%$
 \end_inset
 
 
@@ -4509,22 +3976,22 @@ VUB models
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evaluation for vanilla, VIB and VUB models, average over 3 runs with standard
+Evaluation for vanilla, VIB and VUB models, average over 5 runs with standard
  deviation over the IMDB dataset.
- First column is performance on the test set, second is % of successful
- Deep Word Bug attacks (lower is better 
+ First column is performance on the test set (higher is better 
+\begin_inset Formula $\uparrow$
+\end_inset
+
+), second is % of successful Deep Word Bug attacks (lower is better 
 \begin_inset Formula $\downarrow$
 \end_inset
 
-), third and fourth columns are final rate (higher is better 
-\begin_inset Formula $\uparrow$
-\end_inset
-
-) and distortion (lower is better 
-\begin_inset Formula $\uparrow$
+), third column is % of successful PWWS attacks (lower is better 
+\begin_inset Formula $\downarrow$
 \end_inset
 
 ).
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "tab:text_attack_evaluation"
@@ -4560,7 +4027,7 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Original text
+Text perturbed with DWB
 \end_layout
 
 \end_inset
@@ -4571,20 +4038,22 @@ Original text
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\emph on
-great
-\emph default
- historical movie, will not allow a viewer to leave once you begin to watch.
+g
+\series bold
+n
+\series default
+reat historical movie, will not allow a viewer to leave once you begin to
+ watch.
  View is presented differently than displayed by most school books on this
  
 \emph on
-subject
+s
+\series bold
+S
+\series default
+ubject
 \emph default
-.
- My only fault for this movie is it was photographed in black and white;
- wished it had been in color ...
- wow !
+ [...]
 \end_layout
 
 \end_inset
@@ -4597,7 +4066,7 @@ subject
 \begin_layout Plain Layout
 
 \series bold
-Perturbed text
+Text perturbed with PWWS
 \end_layout
 
 \end_inset
@@ -4608,20 +4077,14 @@ Perturbed text
 \begin_inset Text
 
 \begin_layout Plain Layout
-
-\emph on
-gnreat
-\emph default
- historical movie, will not allow a viewer to leave once you begin to watch.
- View is presented differently than displayed by most school books on this
- 
-\emph on
-sSbject
-\emph default
-.
- My only fault for this movie is it was photographed in black and white;
- wished it had been in color ...
- wow !
+the acting , costumes , music , cinematography and sound are all 
+\strikeout on
+astounding
+\series bold
+\strikeout default
+dumbfounding
+\series default
+ given the production 's austere locales .
 \end_layout
 
 \end_inset
@@ -4638,30 +4101,12 @@ sSbject
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Example of a successful Deep Word Bug attack on a vanilla Bert model fine
+Examples of a successful DWB an PWWS attacks on a vanilla Bert model fine
  tuned over the IMDB dataset.
- The original label is 'Positive sentiment'.
- Perturbations, marked in italic font, change the classification to 'Negative
+ The original labels were 'Positive sentiment'.
+ Perturbations including inserted tokens marked in boldface and removed
+ tokens marked in strikethrough, change the classification to 'Negative
  sentiment'.
- VUB and VIB classifiers are far less susceptible to these perturbations
- as shown in Table
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{tab:text_attack_evaluation}
-\end_layout
-
-\end_inset
-
-.
  
 \begin_inset CommandInset label
 LatexCommand label
@@ -4697,17 +4142,17 @@ name "sec:Discussion"
 Our study strengthens the argument for using the Information Bottleneck
  combined with variational approximations to obtain robust models that can
  withstand adversarial attacks.
- By deriving tighter bounds on the IB functional, we demonstrate their utility
- as Variational Upper Bound (VUB) objective for neural networks.
+ By deriving a tighter bound on the IB functional, we demonstrate it's utility
+ as the Variational Upper Bound (VUB) objective for neural networks.
  We demonstrate that VUB outperforms the Variational Information Bottleneck
- (VIB) in terms of rate distortion ratio, test accuracy, and robustness
- to untargeted attacks in challenging classification tasks.
- However, VUB's performance falls behind in targeted CW attacks.
- In text classification VIB and VUB achieve similar results despite VUB's
- significantly higher rate distortion ratio.
- This may be explained by the limitations of our variational approximations
- or by the limitations of a mutual information objective in deep learning
- as suggested by 
+ (VIB) in terms of test accuracy while providing similar or superior robustness
+ to adversarial attacks in challenging classification tasks of different
+ modalities.
+\end_layout
+
+\begin_layout Standard
+Comparing VIB and VUB we observe that both methods promote a disentangled
+ latent space by using a stochastic factorized prior, as suggested by 
 \begin_inset ERT
 status open
 
@@ -4715,22 +4160,24 @@ status open
 
 
 \backslash
-citet{Amjad2020}
+citet{Chen2018}
 \end_layout
 
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Notably, the higher encoder entropy enforced by the KL term in VIB and by
- the 
-\begin_inset Formula $-H(Z|X)$
+ In addition, both methods utilize KL regularization, enforcing clustering
+ around a 
+\begin_inset Formula $0$
 \end_inset
 
- term in VUB, along with the disentanglement associated with the use of
- a factorized prior 
+ mean which might increase latent smoothness.
+ These traits can make it difficult for minor perturbations to significantly
+ alter latent semantics, making the models more robust to attacks.
+ In the case of VUB, the enhanced results induced by classifier regularization
+ not only reinforce previous studies on the ELBO function, which suggest
+ that overly powerful decoders diminish the quality learned representations
+ 
 \begin_inset ERT
 status open
 
@@ -4738,47 +4185,67 @@ status open
 
 
 \backslash
-cite{Chen2018}
+cite{Alemi2018}
 \end_layout
 
 \end_inset
 
-, may explain the higher resilience to adversarial attacks.
- Each input is mapped to a broader, smoother span in the latent space, making
- it difficult for minor perturbations to significantly alter it's latent
- semantics.
- VUB's addition of a new conditional entropy term 
-\begin_inset Formula $-H(Y|Z)$
+, but also align with the confidence penalty proposed by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{Pereyra2017}
+\end_layout
+
 \end_inset
 
- increases decoder entropy and likely accounts for the additional improvement
- in performance.
- In light of these findings, we suggest that practitioners monitor the rate
- distortion ratio and validation set accuracy during training.
- These metrics may be more informative indicators of model performance,
- as validation set cross entropy could increase as the model becomes more
- calibrated.
+.
+ 
+\end_layout
+
+\begin_layout Standard
+We also observed that in many cases VIB achieves lower validation set Cross-Entr
+opy while VUB achieves significantly higher test set accuracy.
+ We attribute this gap to the VUB models becoming more calibrated, and we
+ suggest that practitioners also monitor validation set accuracy and rate
+ distortion ratio and during training.
+ These metrics may be more informative indicators of model performance than
+ validation set Cross-Entropy alone, as validation Cross-Entropy could increase
+ as models become more calibrated.
+ 
+\end_layout
+
+\begin_layout Standard
+We made another interesting observation during our study regarding information
+ plane behavior throughout the training process.
+ While previous research has documented the occurrence of error minimization
+ and representation compression phases, our work revealed that these phases
+ can occur in cycles throughout training.
+ This finding is particularly noteworthy because previous studies observed
+ this phenomenon in simple toy problems, whereas our research demonstrated
+ it in a complex task with an unknown distribution and high dimensionality.
+ This suggests that the behavior of the information plane is not limited
+ to simplified scenarios but is a characteristic of the learning process
+ in more challenging tasks as well.
+ 
 \end_layout
 
 \begin_layout Standard
 In conclusion, while the IB and its variational approximations do not provide
- a complete theoretical framework for DNN regularization, they offer a strong,
- measurable, and theoretically-grounded alternative.
- VUB is presented as a tractable upper bound of the IB functional and a
- combination of previously derived non-IB regularization methods.
-\end_layout
-
-\begin_layout Standard
-As a side note, this work presents, for the first time to the best of our
- knowledge, the observation of information plane error minimization and
- compression in real-world problems.
-\end_layout
-
-\begin_layout Standard
-This study opens many opportunities for further research.
+ a complete theoretical framework for DNN data modeling and regularization,
+ they offer a strong, measurable, and theoretically-grounded approach.
+ VUB is presented as a tractable and tighter upper bound of the IB functional
+ that can be easily adapted to any classifier DNN, including transformer
+ based text classifiers, to significantly increase robustness to various
+ adversarial attacks while inflicting minimal decrease in performance.
+ This study opens many opportunities for further research.
  Besides further improvements to the upper bound, it is intriguing to use
  VUB in self-supervised learning and in generative tasks.
- Other possible directions, including producing calibrated models as proposed
+ Other possible directions, including measuring model calibration as proposed
  by 
 \begin_inset ERT
 status open
@@ -4793,6 +4260,61 @@ citet{Achille2018}
 \end_inset
 
  are left for future work.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /Users/nirweingarten/Desktop/university/idc/thesis/icml/media/two_images/untargeted_two_images.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Successful untargeted FGS attack examples.
+ Images are perturbations of previously successfully classified instances
+ from the ImageNet validation set.
+ Perturbation magnitude is determined by the parameter 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ shown on the left, the higher the more perturbed.
+ Notice the deterioration of image quality as 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ increases.
+ Original and wrongly assigned labels are listed at the top of each image.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:untargeted_examples"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

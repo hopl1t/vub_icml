@@ -59,7 +59,7 @@
 
 % The \icmltitle you define below is probably too long as a header.
 % Therefore, a short form for the running title is supplied here:
-\icmltitlerunning{IB}
+\icmltitlerunning{Tighter Bounds on the Information Bottleneck with Application to Deep Learning}
 
 \bibliographystyle{icml2023}
 \end_preamble
@@ -136,37 +136,115 @@
 
 \begin_body
 
-\begin_layout Title
-Tighter Bounds on the Information Bottleneck with Application to Deep Learning
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+twocolumn[ 
+\backslash
+icmltitle{Tighter Bounds on the Information Bottleneck with Application
+ to Deep Learning}
 \end_layout
 
-\begin_layout Author
-Anonymous submission
+\begin_layout Plain Layout
+
+
+\backslash
+icmlsetsymbol{equal}{*}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{icmlauthorlist} 
+\backslash
+icmlauthor{Nir Weingarten}{runi} 
+\backslash
+icmlauthor{Zohar Yakhini}{runi} 
+\backslash
+icmlauthor{Moshe Butman}{runi} 
+\backslash
+icmlauthor{Ran Gilad-Bachrach}{tau} 
+\backslash
+end{icmlauthorlist}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+icmlaffiliation{runi}{Efi Arzi School of Computer Science, Reichman University,
+ Herzliya, Israel} 
+\backslash
+icmlaffiliation{tau}{Department of Biomedical Engineering, Tel-Aviv University,
+ Tel-Aviv, Israel}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+icmlcorrespondingauthor{Nir Weingarten}{nir.weingarten@runi.ac.il}
+\end_layout
+
+\begin_layout Plain Layout
+
+% You may provide any keywords that you % find helpful for describing your
+ paper; these are used to populate % the "keywords" metadata in the PDF
+ but will not be shown in the document 
+\backslash
+icmlkeywords{Information Bottleneck, Information Theory, Representation
+ Learning, Regularization, Robustness, Adversarial Attacks}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vskip 0.3in ]
+\end_layout
+
+\begin_layout Plain Layout
+
+% This command actually creates the footnote in the first column
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+printAffiliationsAndNotice{}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Abstract
-Deep Neural Nets (DNNs) learn latent representations induced by their downstream
- task, objective function and other parameters.
- The quality of their data modeling affects the DNN's ability to generalize
- and the coherence of the emerging latent space.
- The Information Bottleneck, IB, offers an optimal information theoretic
- framework for data modeling, however, it is intractable in most settings.
- In recent years attempts were made to combine deep learning with the IB
- both for optimization and for the interpretation of DNNs.
- VAE inspired variational approximations became a popular method to approximate
- bounds on the required mutual information computations.
- This work introduces a new tractable variational upper bound for the IB
- functional which is tighter than previous bounds.
- When used as an objective function it enhances the performance of previous
- IB-inspired DNNs in terms of test accuracy while providing similar or superior
- robustness to adversarial attacks.
- These improvements in performance, induced by a tighter bound, strengthen
- the cause for the IB and it's variational approximations as a framework
- for better representation learning.
- Furthermore, we present practitioners with a simple method to substantially
- increase adversarial robustness of any classifier DNN while suffering only
- a slight decrease in performance over unseen data.
- 
+Deep Neural Nets (DNNs) learn latent representations influenced by their
+ task, objective function, and other parameters.
+ The quality of data modeling impacts the DNN's generalization ability and
+ the coherence of the emerging latent space.
+ The Information Bottleneck (IB) provides an optimal framework for data
+ modeling, but it is often intractable.
+ Recent efforts combined deep learning with the IB using VAE-inspired variationa
+l approximations to compute mutual information.
+ This work introduces a new tractable variational upper bound for the IB,
+ outperforming previous bounds.
+ When used as an objective function, it improves the performance of IB-inspired
+ DNNs in terms of test accuracy while providing similar or superior robustness
+ to adversarial attacks.
+ These advancements strengthen the case for the IB and its variational approxima
+tions as a framework for better representation learning.
+ Additionally, we present a simple method to significantly enhance the adversari
+al robustness of any classifier DNN with a minor decrease in performance
+ on unseen data.
 \end_layout
 
 \begin_layout Section
@@ -4324,6 +4402,10 @@ name "fig:untargeted_examples"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section*
+Impact
 \end_layout
 
 \begin_layout Standard

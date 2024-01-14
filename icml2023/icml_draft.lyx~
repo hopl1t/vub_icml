@@ -241,10 +241,10 @@ l approximations to compute mutual information.
  DNNs in terms of test accuracy while providing similar or superior robustness
  to adversarial attacks.
  These advancements strengthen the case for the IB and its variational approxima
-tions as a framework for better representation learning.
- Additionally, we present a simple method to significantly enhance the adversari
-al robustness of any classifier DNN with a minor decrease in performance
- on unseen data.
+tions as a framework for better representation learning, and provides a
+ simple method to significantly enhance the adversarial robustness of any
+ classifier DNN while suffering only a slight decrease in classification
+ accuracy.
 \end_layout
 
 \begin_layout Section
@@ -429,35 +429,17 @@ citet{Alemi2017}
  layer optimized with the VIB objective results in a slight decrease in
  test set accuracy but a significant increase in robustness to adversarial
  attacks in complicated classification tasks.
- Similar behavior is demonstrated in the current work as shown in Section
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{sec:Experiments}
-\end_layout
-
-\end_inset
-
-.
+ 
 \end_layout
 
 \begin_layout Standard
-The case for the IB functional, and it's variational approximations, as
- a theoretical limit for optimal representation relies on three assumptions:
- (1) It suffices to optimize the mutual information metric to optimize a
- model's performance; (2) Forgetting more information about the input while
- keeping the same information about the output induces better generalization
- over unseen data; (3) Mutual information between the input, output and
- latent representation can be either computed or approximated to a desired
- level of accuracy.
+While providing a complete framework for optimal data modeling, the IB,
+ and it's variational approximations, rely on three assumptions: (1) It
+ suffices to optimize the mutual information metric to optimize a model's
+ performance; (2) Forgetting more information about the input while keeping
+ the same information about the output induces better generalization; (3)
+ Mutual information between the input, output and latent representation
+ can be either computed or approximated to a desired level of accuracy.
 \end_layout
 
 \begin_layout Standard
@@ -469,9 +451,9 @@ In this study, we adopt the same information theoretic and variational approach
  IB than VIB.
  We proceed to show empirical evidence that VUB substantially increases
  test accuracy over VIB while providing similar or superior robustness to
- adversarial attacks across several challenging tasks and modalities.
- Finally, we discuss these effects in the context of previous work on IB
- and other DNN regularization techniques.
+ adversarial attacks across several challenging tasks and different modalities.
+ Finally, we discuss these effects in the context of previous work on the
+ IB and other DNN regularization techniques.
  The conclusion drawn is that while more mutual information between encoding
  and output does not necessarily improve classification, and more compressed
  encoding does not always enhance regularization 

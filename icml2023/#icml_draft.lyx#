@@ -680,7 +680,8 @@ cite{Kingma2019}
 
 \begin_layout Standard
 In this work information theoretic functions share the same notation for
- discrete and continuous settings and are denoted as follows:
+ discrete and continuous settings.
+ For brevity, we will only present the continuous versions here:
 \end_layout
 
 \begin_layout Standard
@@ -744,7 +745,7 @@ entropy
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $CE(P,Q)=-\int p(x)log\left(q(x)\right)dx$
+\begin_inset Formula $CE(p,q)=-\int p(x)log\left(q(x)\right)dx$
 \end_inset
 
 
@@ -771,7 +772,7 @@ divergence
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $D_{KL}\left(P\Big|\Big|Q\right)=\int p(x)log\left(\frac{p(x)}{q(x)}\right)dx$
+\begin_inset Formula $D_{KL}\left(p\big|\big|q\right)=\int p(x)log\left(\frac{p(x)}{q(x)}\right)dx$
 \end_inset
 
 
@@ -857,8 +858,8 @@ cite{Blahut1972}
 \begin_inset Formula $T$
 \end_inset
 
- be a positive minimal threshold for the desired distortion and assume a
- latent variable model with the Markov chain 
+ be a positive minimal threshold for the desired distortion, assume a latent
+ variable model with the Markov chain 
 \begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
@@ -1006,7 +1007,7 @@ citet{Chechik2003}
 
 \end_inset
 
- extended IB for gaussian distributions and 
+ extended the IB for gaussian distributions and 
 \begin_inset ERT
 status open
 
@@ -1019,7 +1020,7 @@ citet{Painsky2017}
 
 \end_inset
 
- offered a limited linear approximation of IB for any distribution.
+ offered a limited linear approximation of the IB for any distribution.
 \end_layout
 
 \begin_layout Subsection
@@ -1047,7 +1048,7 @@ citet{Tishby2015}
 \emph on
 complexity gap
 \emph default
- between the achieved and optimal IB compression rate for that setting,
+ between the achieved and the optimal IB compression rate for that setting,
  and it is hypothesized that bridging this gap will result in optimal generaliza
 tion.
  
@@ -1127,17 +1128,17 @@ citet{ShwartzZiv2017}
 
 .
  Left are initial weights, Right are at 400 epochs.
- 
-\begin_inset Formula $I(T;Y),I(X;T)$
+ Where 
+\begin_inset Formula $T$
 \end_inset
 
- are analogous to 
-\begin_inset Formula $I(Z;Y),I(X;Z)$
+ is the hidden variable, analogous to 
+\begin_inset Formula $Z$
 \end_inset
 
  in the current study.
- We believe to be the first to demonstrate similar information plane behavior
- on real-world problems as shown in Figure
+ Our study reproduced similar yet repetitive behavior on complicated high
+ dimensional tasks, as shown in Figure
 \begin_inset space ~
 \end_inset
 
@@ -1203,10 +1204,10 @@ citet{Amjad2020}
 
  is discrete the IB functional is a piecewise constant function of the parameter
 s, making it's SGD optimization difficult or impossible; (3) Equivalent
- representations might yield the same IB loss while one achieved much better
+ representations might yield the same IB loss while one achieved better
  classification rate than the other.
- These discrepancies were attributed to to mutual information's invariance
- to invertible transformations and the absence of the decision function
+ These discrepancies were attributed to mutual information's invariance
+ to invertible transformations and to the absence of a decision function
  in the objective.
 \end_layout
 
@@ -1240,7 +1241,7 @@ citet{Kingma2014}
 \end_inset
 
  is assumed to generate evidence 
-\begin_inset Formula $X,Y$
+\begin_inset Formula $X$
 \end_inset
 
  and the true probability 
@@ -1264,7 +1265,7 @@ citet{Kingma2014}
 
  is then developed in to the tractable VAE loss comprised of the Evidence
  Lower Bound (ELBO) and KL regularization terms: 
-\begin_inset Formula $\underset{\text{\emph{\text{\emph{ELBO}}}}}{\mathcal{L}}=\mathbb{E}_{q_{\phi}(z|x)}\left[log\left(p_{\theta}(x|z)\right)\right]-D_{KL}\left(q_{\phi}(z|x)\Big|\Big|p_{\theta}(z)\right)$
+\begin_inset Formula $\underset{\text{\emph{\text{\emph{ELBO}}}}}{\mathcal{L}}=\mathbb{E}_{q_{\phi}(z|x)}\left[log\left(p_{\theta}(x|z)\right)\right]-D_{KL}\left(q_{\phi}(z|x)\big|\big|p_{\theta}(z)\right)$
 \end_inset
 
 .
@@ -1291,8 +1292,7 @@ citet{Kingma2014}
 \begin_inset Formula $\epsilon\sim N(0,1)$
 \end_inset
 
- s.t.
- a backwards pass is possible.
+ such that a backwards pass is possible.
  
 \begin_inset ERT
 status open
@@ -1323,49 +1323,6 @@ status open
 
 
 \backslash
-citet{Alemi2017}
-\end_layout
-
-\end_inset
-
- introduced the Variational Information Bottleneck (VIB) as a variational
- approximation for an upper bound to the IB objective for classifier DNN
- optimization: Upper bounds for 
-\begin_inset Formula $I(Z,Y),I(X,Z)$
-\end_inset
-
- are derived from the identity 
-\begin_inset Formula $D_{KL}\left(\text{True probability}\Big|\Big|\text{Variational approximation}\right)\ge0$
-\end_inset
-
- and used to form an upper bound for the IB functional.
- This upper bound is approximated using variational approximations for 
-\begin_inset Formula $p^{*}(y|z),p^{*}(z)$
-\end_inset
-
- similarly to VAEs.
- This approximation to an upper bound over the IB objective is empirically
- estimated as Cross entropy and a beta scaled KL regularization term as
- in 
-\begin_inset Formula $\beta$
-\end_inset
-
--autoencoders and is optimized over the training data 
-\begin_inset Formula $\mathcal{S}$
-\end_inset
-
- using Monte Carlo sampling and the reparameterization trick.
- VIB was evaluated over MNIST and ImageNet and, while causing a slight reduction
- in test-accuracy, it generated substantial improvements in robustness to
- adversarial attacks.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
 citet{Alemi2018}
 \end_layout
 
@@ -1388,6 +1345,48 @@ citet{Alemi2018}
 \end_inset
 
  and monitor the rate-distortion tradeoff as well as cross-entropy loss.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{Alemi2017}
+\end_layout
+
+\end_inset
+
+ introduced the Variational Information Bottleneck (VIB) as a variational
+ approximation for an upper bound to the IB objective for classifier DNN
+ optimization: Upper bounds for 
+\begin_inset Formula $I(Z,Y),I(X,Z)$
+\end_inset
+
+ are derived from the identity 
+\begin_inset Formula $D_{KL}\left(\text{True probability}\Big|\Big|\text{Variational approximation}\right)\ge0$
+\end_inset
+
+ and used to form an upper bound for the IB functional.
+ This upper bound is approximated using variational approximations for 
+\begin_inset Formula $p^{*}(y|z),p^{*}(z)$
+\end_inset
+
+ similarly to VAEs.
+ This approximation to an upper bound over the IB objective is empirically
+ estimated as cross entropy and a beta scaled KL regularization term as
+ in 
+\begin_inset Formula $\beta$
+\end_inset
+
+-autoencoders, and is optimized over the training data using Monte Carlo
+ sampling and the reparameterization trick.
+ VIB was evaluated over MNIST and ImageNet and, while causing a slight reduction
+ in test set accuracy, it generated substantial improvements in robustness
+ to adversarial attacks.
 \end_layout
 
 \begin_layout Standard
@@ -1441,14 +1440,14 @@ cite{Pereyra2017}
 \end_inset
 
  both regularize classifier DNNs by increasing the entropy of their output.
- This is done either directly with an entropy term in the loss function,
- 
-\begin_inset Formula $\beta\cdot H\left(p_{\theta}(y|x)\right),$
+ This is done either directly by inserting a scaled conditional entropy
+ term in the loss function 
+\begin_inset Formula $-\gamma\cdot H\left(p_{\theta}(y|x)\right),$
 \end_inset
 
  or by smoothing the training data labels.
  Applying both methods was demonstrated to improve test accuracy and model
- calibration.
+ calibration on various challenging classification tasks.
  In the current work a similar conditional entropy term emerges from the
  derivation of the new upper bound for the IB objective as shown in Section
 \begin_inset space ~
@@ -1492,11 +1491,8 @@ cite{Alemi2017}
 
 \end_inset
 
- consists of a Cross-Entropy (
-\begin_inset Formula $CE$
-\end_inset
-
-) term and a KL regularization term, similar to the VAE loss.
+ consists of a cross entropy term and a KL regularization term, similar
+ to the VAE loss.
  The KL term is derived from a bound on the IB rate term 
 \begin_inset Formula $I(X;Z)$
 \end_inset
@@ -1510,7 +1506,7 @@ cite{Alemi2017}
 \end_inset
 
 .
- When deriving the distortion term the entropy term 
+ When deriving the bound on the distortion term the entropy term 
 \begin_inset Formula $H(Y)$
 \end_inset
 
@@ -1537,17 +1533,12 @@ cite{Alemi2017}
 \end_inset
 
 .
- Following this logic we reintroduce the omitted 
+ Following this logic we replace 
 \begin_inset Formula $H(Y)$
 \end_inset
 
- term into the objective.
- We replace the unknown 
-\begin_inset Formula $H(Y)$
-\end_inset
-
- with a variational approximation of the decoder's entropy, which provides
- a lower bound.
+ with a tractable variational approximation for the decoder entropy which
+ bounds it from below.
 \end_layout
 
 \begin_layout Subsection
@@ -1555,12 +1546,12 @@ IB upper bound
 \end_layout
 
 \begin_layout Standard
-We begin by establishing a new upper bound for the IB functional, starting
- with the same derivation as shown in VIB.
+We begin by establishing a new upper bound for the IB functional by bounding
+ the mutual information terms, using the same method as in VIB.
 \end_layout
 
 \begin_layout Standard
-We begin by bounding 
+Consider 
 \begin_inset Formula $I(Z;X)$
 \end_inset
 
@@ -1618,7 +1609,7 @@ I(Z;X)\overset{\ref{eq:d_kl}}{\le}\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*
 \end_layout
 
 \begin_layout Standard
-We proceed by bounding 
+Consider 
 \begin_inset Formula $I(Z;Y)$
 \end_inset
 
@@ -1666,15 +1657,28 @@ I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)
 \end_layout
 
 \begin_layout Standard
-We continue bounding 
-\begin_inset Formula $I(Z;Y)$
+We diverge from the VIB derivation by replacing 
+\begin_inset Formula $H_{p^{*}}(Y)$
 \end_inset
 
- without discarding the entropy of 
-\begin_inset Formula $Y$
+ with 
+\begin_inset Formula $H_{c}(Y|Z)$
 \end_inset
 
-:
+ instead of ommiting it.
+ Although 
+\begin_inset Formula $H(Y)\ge H(Y|Z)$
+\end_inset
+
+ for any distribution, we limit the value of 
+\begin_inset Formula $H_{c}(Y|Z)$
+\end_inset
+
+ not to exceed 
+\begin_inset Formula $H_{p^{*}}(Y)$
+\end_inset
+
+ as both are not equivalent:
 \end_layout
 
 \begin_layout Standard
@@ -1711,31 +1715,11 @@ We further develop this term using the markov chain
 \end_layout
 
 \begin_layout Standard
-We define 
+We define a new upper bound for the IB functional named 
 \begin_inset Formula $L_{UB}$
 \end_inset
 
-: A new upper bound for the IB functional.
- 
-\begin_inset Formula $L_{UB}$
-\end_inset
-
- is composed of the new bound on the distortion term derived in Equation
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{eq:i_z_y3}
-\end_layout
-
-\end_inset
-
- together with the previously bound on the rate term derived in Equation
- 
+ by joining the bound on rate in Equation 
 \begin_inset ERT
 status open
 
@@ -1744,6 +1728,19 @@ status open
 
 \backslash
 ref{eq:i_z_x2}
+\end_layout
+
+\end_inset
+
+ with the bound on distortion in Equation 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{eq:i_z_y3}
 \end_layout
 
 \end_inset
@@ -1985,8 +1982,7 @@ In terms of tightness we have that VUB is a tighter theoretical bound on
 \begin_inset Formula $Y$
 \end_inset
 
- s.t.
- 
+ such that 
 \begin_inset Formula $H(Y)>0$
 \end_inset
 

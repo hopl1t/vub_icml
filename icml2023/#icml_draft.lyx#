@@ -437,10 +437,9 @@ While providing a complete framework for optimal data modeling, the IB,
  and it's variational approximations, rely on three assumptions: (1) It
  suffices to optimize the mutual information metric to optimize a model's
  performance; (2) Forgetting more information about the input while keeping
- the same information about the output induces better generalization over
- unseen data; (3) Mutual information between the input, output and latent
- representation can be either computed or approximated to a desired level
- of accuracy.
+ the same information about the output induces better generalization; (3)
+ Mutual information between the input, output and latent representation
+ can be either computed or approximated to a desired level of accuracy.
 \end_layout
 
 \begin_layout Standard
@@ -449,12 +448,12 @@ In this study, we adopt the same information theoretic and variational approach
  The work begins by deriving an upper bound for the IB functional.
  We then employ a tractable variational approximation for this bound, named
  VUB - 'Variational Upper Bound' and show that it is a tighter bound on
- IB than VIB.
+ the IB objective than VIB.
  We proceed to show empirical evidence that VUB substantially increases
  test accuracy over VIB while providing similar or superior robustness to
  adversarial attacks across several challenging tasks and different modalities.
- Finally, we discuss these effects in the context of previous work on IB
- and other DNN regularization techniques.
+ Finally, we discuss these effects in the context of previous work on the
+ IB and other DNN regularization techniques.
  The conclusion drawn is that while more mutual information between encoding
  and output does not necessarily improve classification, and more compressed
  encoding does not always enhance regularization 
@@ -474,7 +473,7 @@ cite{Amjad2020}
  improves regularization, suggesting better data modeling.
  This notion contributes for the adaptation of the IB, and it's variational
  approximations, as an objective to learning tasks and as a theoretic framework
- to gauge and explain regularization.
+ to gauge and explain data modeling.
 \end_layout
 
 \begin_layout Standard
@@ -494,7 +493,7 @@ The following literature review and derivations refer to information theory
 \end_layout
 
 \begin_layout Standard
-We denote random variables with upper cased letters 
+We denote random variables (RVs) with upper cased letters 
 \begin_inset Formula $X,Y$
 \end_inset
 
@@ -521,7 +520,7 @@ Let
 \begin_inset Formula $X,Y$
 \end_inset
 
- be two observed random variables (RVs) with unknown distributions 
+ be two observed random variables with unknown distributions 
 \begin_inset Formula $p^{*}(x),p^{*}(y)$
 \end_inset
 
@@ -606,7 +605,7 @@ cite{Kingma2019}
 
 \end_inset
 
-, as is demonstrated in Section
+, as is elaborated in Section
 \begin_inset space ~
 \end_inset
 
@@ -1982,7 +1981,7 @@ citet{Alemi2018}
 
 \begin_layout Standard
 In terms of tightness we have that VUB is a tighter theoretical bound on
- IB than VIB for any 
+ the IB objective than VIB for any 
 \begin_inset Formula $Y$
 \end_inset
 

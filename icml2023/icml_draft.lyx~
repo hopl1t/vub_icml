@@ -448,7 +448,7 @@ In this study, we adopt the same information theoretic and variational approach
  The work begins by deriving an upper bound for the IB functional.
  We then employ a tractable variational approximation for this bound, named
  VUB - 'Variational Upper Bound' and show that it is a tighter bound on
- IB than VIB.
+ the IB objective than VIB.
  We proceed to show empirical evidence that VUB substantially increases
  test accuracy over VIB while providing similar or superior robustness to
  adversarial attacks across several challenging tasks and different modalities.
@@ -473,7 +473,7 @@ cite{Amjad2020}
  improves regularization, suggesting better data modeling.
  This notion contributes for the adaptation of the IB, and it's variational
  approximations, as an objective to learning tasks and as a theoretic framework
- to gauge and explain regularization.
+ to gauge and explain data modeling.
 \end_layout
 
 \begin_layout Standard
@@ -493,7 +493,7 @@ The following literature review and derivations refer to information theory
 \end_layout
 
 \begin_layout Standard
-We denote random variables with upper cased letters 
+We denote random variables (RVs) with upper cased letters 
 \begin_inset Formula $X,Y$
 \end_inset
 
@@ -520,7 +520,7 @@ Let
 \begin_inset Formula $X,Y$
 \end_inset
 
- be two observed random variables (RVs) with unknown distributions 
+ be two observed random variables with unknown distributions 
 \begin_inset Formula $p^{*}(x),p^{*}(y)$
 \end_inset
 
@@ -605,7 +605,7 @@ cite{Kingma2019}
 
 \end_inset
 
-, as is demonstrated in Section
+, as is elaborated in Section
 \begin_inset space ~
 \end_inset
 
@@ -680,7 +680,8 @@ cite{Kingma2019}
 
 \begin_layout Standard
 In this work information theoretic functions share the same notation for
- discrete and continuous settings and are denoted as follows:
+ discrete and continuous settings.
+ For brevity, we will only present the continuous versions here:
 \end_layout
 
 \begin_layout Standard
@@ -744,7 +745,7 @@ entropy
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $CE(P,Q)=-\int p(x)log\left(q(x)\right)dx$
+\begin_inset Formula $CE(p,q)=-\int p(x)log\left(q(x)\right)dx$
 \end_inset
 
 
@@ -771,7 +772,7 @@ divergence
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset Formula $D_{KL}\left(P\Big|\Big|Q\right)=\int p(x)log\left(\frac{p(x)}{q(x)}\right)dx$
+\begin_inset Formula $D_{KL}\left(p\Big|\Big|q\right)=\int p(x)log\left(\frac{p(x)}{q(x)}\right)dx$
 \end_inset
 
 
@@ -857,8 +858,8 @@ cite{Blahut1972}
 \begin_inset Formula $T$
 \end_inset
 
- be a positive minimal threshold for the desired distortion and assume a
- latent variable model with the Markov chain 
+ be a positive minimal threshold for the desired distortion, assume a latent
+ variable model with the Markov chain 
 \begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
@@ -1006,7 +1007,7 @@ citet{Chechik2003}
 
 \end_inset
 
- extended IB for gaussian distributions and 
+ extended the IB for gaussian distributions and 
 \begin_inset ERT
 status open
 
@@ -1019,7 +1020,7 @@ citet{Painsky2017}
 
 \end_inset
 
- offered a limited linear approximation of IB for any distribution.
+ offered a limited linear approximation of the IB for any distribution.
 \end_layout
 
 \begin_layout Subsection
@@ -1047,7 +1048,7 @@ citet{Tishby2015}
 \emph on
 complexity gap
 \emph default
- between the achieved and optimal IB compression rate for that setting,
+ between the achieved and the optimal IB compression rate for that setting,
  and it is hypothesized that bridging this gap will result in optimal generaliza
 tion.
  
@@ -1127,17 +1128,17 @@ citet{ShwartzZiv2017}
 
 .
  Left are initial weights, Right are at 400 epochs.
- 
-\begin_inset Formula $I(T;Y),I(X;T)$
+ Where 
+\begin_inset Formula $T$
 \end_inset
 
- are analogous to 
-\begin_inset Formula $I(Z;Y),I(X;Z)$
+ is the hidden variable, analogous to 
+\begin_inset Formula $Z$
 \end_inset
 
  in the current study.
- We believe to be the first to demonstrate similar information plane behavior
- on real-world problems as shown in Figure
+ Our study reproduced similar yet repetitive behavior on complicated high
+ dimensional tasks, as shown in Figure
 \begin_inset space ~
 \end_inset
 
@@ -1203,10 +1204,10 @@ citet{Amjad2020}
 
  is discrete the IB functional is a piecewise constant function of the parameter
 s, making it's SGD optimization difficult or impossible; (3) Equivalent
- representations might yield the same IB loss while one achieved much better
+ representations might yield the same IB loss while one achieved better
  classification rate than the other.
- These discrepancies were attributed to to mutual information's invariance
- to invertible transformations and the absence of the decision function
+ These discrepancies were attributed to mutual information's invariance
+ to invertible transformations and to the absence of a decision function
  in the objective.
 \end_layout
 
@@ -1981,7 +1982,7 @@ citet{Alemi2018}
 
 \begin_layout Standard
 In terms of tightness we have that VUB is a tighter theoretical bound on
- IB than VIB for any 
+ the IB objective than VIB for any 
 \begin_inset Formula $Y$
 \end_inset
 

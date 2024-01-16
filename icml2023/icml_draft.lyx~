@@ -855,7 +855,7 @@ cite{Blahut1972}
 
  the target signal for some specific downstream task.
  Let 
-\begin_inset Formula $T$
+\begin_inset Formula $D$
 \end_inset
 
  be a positive minimal threshold for the desired distortion, assume a latent
@@ -870,7 +870,7 @@ cite{Blahut1972}
 \end_inset
 
  subject to 
-\begin_inset Formula $I(Z;Y)\ge T$
+\begin_inset Formula $I(Z;Y)\ge D$
 \end_inset
 
 .
@@ -931,6 +931,16 @@ The information plane and curve - rate distortion ratio over
 \end_inset
 
 .
+ At 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+, representation is compressed but uninformative (maximal compression),
+ at 
+\begin_inset Formula $\beta\rightarrow\infty$
+\end_inset
+
+ it's informative but potentially overfitted (maximal information).
  Adapted from 
 \begin_inset ERT
 status open
@@ -945,16 +955,6 @@ cite{Slonim2002}
 \end_inset
 
 .
- At 
-\begin_inset Formula $\beta=0$
-\end_inset
-
-, representation is compressed but uninformative (maximal compression),
- at 
-\begin_inset Formula $\beta\rightarrow\infty$
-\end_inset
-
- it's informative but potentially overfitted (maximal information).
 \begin_inset CommandInset label
 LatexCommand label
 name "info_plane"
@@ -1044,13 +1044,9 @@ citet{Tishby2015}
  of intermediate representations between hidden layers.
  Neural architecture and dataset cardinality are theoretically sufficient
  to compute the optimal rate distortion of a DNN on the information curve.
- This suggests a model 
-\emph on
-complexity gap
-\emph default
- between the achieved and the optimal IB compression rate for that setting,
- and it is hypothesized that bridging this gap will result in optimal generaliza
-tion.
+ This suggests a model 'complexity gap' between the achieved and the optimal
+ IB compression rate for that setting, and it is hypothesized that bridging
+ this gap will result in optimal generalization.
  
 \begin_inset ERT
 status open
@@ -1538,7 +1534,7 @@ cite{Alemi2017}
 \end_inset
 
  with a tractable variational approximation for the decoder entropy which
- bounds it from below.
+ provides a lower bound.
 \end_layout
 
 \begin_layout Subsection
@@ -1576,7 +1572,7 @@ For any probability distribution
 \end_inset
 
  we have that 
-\begin_inset Formula $D_{KL}\left(p^{*}(z),r(z)\right)\ge0$
+\begin_inset Formula $D_{KL}\left(p^{*}(z)\big|\big|r(z)\right)\ge0$
 \end_inset
 
 , it follows that:
@@ -1622,7 +1618,7 @@ For any probability distribution
 \end_inset
 
  we have that 
-\begin_inset Formula $D_{KL}\left(p^{*}(y|z),c(y|z)\right)\ge0$
+\begin_inset Formula $D_{KL}\left(p^{*}(y|z)\big|\big|c(y|z)\right)\ge0$
 \end_inset
 
 , it follows that:
@@ -1695,7 +1691,7 @@ We diverge from the VIB derivation by replacing
 
 \begin_layout Standard
 We further develop this term using the markov chain 
-\begin_inset Formula $Z\leftarrow X\leftarrow Y$
+\begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
  and total probability:
@@ -2190,8 +2186,8 @@ cite{Szegedy2016}
 
 \end_inset
 
- base model was used and achieved a 77.21% accuracy on the image-net 2012
- validation set (Test set for image-net is unavailable).
+ base model was used and achieved a 77.21% accuracy on the ImageNet 2012
+ validation set (Test set for ImageNet is unavailable).
  Note that inceptionV3 yields a slightly worse single shot accuracy than
  inceptionV2 (80.4%) when run in a single model and single crop setting,
  however we've used InceptionV3 over V2 for simplicity.
@@ -3022,10 +3018,10 @@ VUB models
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Image-net evaluation scores for vanilla, VIB and VUB models, average over
+ImageNet evaluation scores for vanilla, VIB and VUB models, average over
  5 runs with standard deviation.
- First column is performance on the image-net validation set (higher is
- better 
+ First column is performance on the ImageNet validation set (higher is better
+ 
 \begin_inset Formula $\uparrow$
 \end_inset
 
@@ -4375,12 +4371,13 @@ Successful untargeted FGS attack examples.
 \end_inset
 
  shown on the left, the higher the more perturbed.
+ Original and wrongly assigned labels are listed at the top of each image.
  Notice the deterioration of image quality as 
 \begin_inset Formula $\epsilon$
 \end_inset
 
  increases.
- Original and wrongly assigned labels are listed at the top of each image.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:untargeted_examples"

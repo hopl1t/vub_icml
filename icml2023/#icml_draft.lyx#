@@ -855,7 +855,7 @@ cite{Blahut1972}
 
  the target signal for some specific downstream task.
  Let 
-\begin_inset Formula $T$
+\begin_inset Formula $D$
 \end_inset
 
  be a positive minimal threshold for the desired distortion, assume a latent
@@ -870,7 +870,7 @@ cite{Blahut1972}
 \end_inset
 
  subject to 
-\begin_inset Formula $I(Z;Y)\ge T$
+\begin_inset Formula $I(Z;Y)\ge D$
 \end_inset
 
 .
@@ -931,6 +931,16 @@ The information plane and curve - rate distortion ratio over
 \end_inset
 
 .
+ At 
+\begin_inset Formula $\beta=0$
+\end_inset
+
+, representation is compressed but uninformative (maximal compression),
+ at 
+\begin_inset Formula $\beta\rightarrow\infty$
+\end_inset
+
+ it's informative but potentially overfitted (maximal information).
  Adapted from 
 \begin_inset ERT
 status open
@@ -945,16 +955,6 @@ cite{Slonim2002}
 \end_inset
 
 .
- At 
-\begin_inset Formula $\beta=0$
-\end_inset
-
-, representation is compressed but uninformative (maximal compression),
- at 
-\begin_inset Formula $\beta\rightarrow\infty$
-\end_inset
-
- it's informative but potentially overfitted (maximal information).
 \begin_inset CommandInset label
 LatexCommand label
 name "info_plane"
@@ -1044,13 +1044,9 @@ citet{Tishby2015}
  of intermediate representations between hidden layers.
  Neural architecture and dataset cardinality are theoretically sufficient
  to compute the optimal rate distortion of a DNN on the information curve.
- This suggests a model 
-\emph on
-complexity gap
-\emph default
- between the achieved and the optimal IB compression rate for that setting,
- and it is hypothesized that bridging this gap will result in optimal generaliza
-tion.
+ This suggests a model 'complexity gap' between the achieved and the optimal
+ IB compression rate for that setting, and it is hypothesized that bridging
+ this gap will result in optimal generalization.
  
 \begin_inset ERT
 status open
@@ -1344,7 +1340,7 @@ citet{Alemi2018}
 \begin_inset Formula $1$
 \end_inset
 
- and monitor the rate-distortion tradeoff as well as cross-entropy loss.
+ and monitor the rate-distortion tradeoff as well as cross entropy loss.
 \end_layout
 
 \begin_layout Standard
@@ -1576,7 +1572,7 @@ For any probability distribution
 \end_inset
 
  we have that 
-\begin_inset Formula $D_{KL}\left(p^{*}(z),r(z)\right)\ge0$
+\begin_inset Formula $D_{KL}\left(p^{*}(z)\big|\big|r(z)\right)\ge0$
 \end_inset
 
 , it follows that:
@@ -1622,7 +1618,7 @@ For any probability distribution
 \end_inset
 
  we have that 
-\begin_inset Formula $D_{KL}\left(p^{*}(y|z),c(y|z)\right)\ge0$
+\begin_inset Formula $D_{KL}\left(p^{*}(y|z)\big|\big|c(y|z)\right)\ge0$
 \end_inset
 
 , it follows that:
@@ -1779,8 +1775,7 @@ Variational approximation
 \end_layout
 
 \begin_layout Standard
-We follow the same variational approach as in VIB.
- We define 
+Following the same variational approach as in VIB, we define 
 \begin_inset Formula $L_{VUB}$
 \end_inset
 
@@ -1797,7 +1792,7 @@ We follow the same variational approach as in VIB.
 \begin_inset Formula $p^{*}(z|x)$
 \end_inset
 
-, 
+ and 
 \begin_inset Formula $c(y|z)$
 \end_inset
 
@@ -1805,30 +1800,17 @@ We follow the same variational approach as in VIB.
 \begin_inset Formula $p^{*}(y|z)$
 \end_inset
 
-.
- We reintroduce 
-\begin_inset Formula $\beta$
-\end_inset
-
- to allow tuning of the KL term and replace the intractable 
-\begin_inset Formula $p^{*}(z)$
-\end_inset
-
- is with the variational approximation 
-\begin_inset Formula $r(z)$
-\end_inset
-
-.
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
  & L_{VUB}\equiv\nonumber \\
- & \beta\int\int p^{*}(x)e_{\phi}(z|x)log\left(\frac{e_{\phi}(z|x)}{r(z)}\right)dxdz\nonumber \\
-- & \int\int\int p^{*}(x)p^{*}(y|x)e_{\phi}(z|x)log\left(c_{\lambda}(y|z)\right)dxdydz\label{eq:l_vub}\\
+ & \beta\int\int p^{*}(x)e(z|x)log\left(\frac{e(z|x)}{r(z)}\right)dxdz\nonumber \\
+- & \int\int\int p^{*}(x)p^{*}(y|x)e(z|x)log\left(c(y|z)\right)dxdydz\label{eq:l_vub}\\
 - & min\Bigg\{ H_{p^{*}}(Y),\nonumber \\
- & -\int\int\int p^{*}(x)e_{\phi}(z|x)c_{\lambda}(y|z)log\left(c_{\lambda}(y|z)\right)dxdydz\Bigg\}\nonumber \\
+ & -\int\int\int p^{*}(x)e(z|x)c(y|z)log\left(c(y|z)\right)dxdydz\Bigg\}\nonumber \\
 \ge & L_{IB}\nonumber 
 \end{align}
 
@@ -1843,11 +1825,7 @@ Empirical estimation
 
 \begin_layout Standard
 We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
- over the training data 
-\begin_inset Formula $\mathcal{D}$
-\end_inset
-
-.
+ over some training dataset.
  Let 
 \begin_inset Formula $e_{\phi}$
 \end_inset
@@ -1860,8 +1838,7 @@ We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
 \begin_inset Formula $e_{\phi}(x)\sim N(\mu,\Sigma)$
 \end_inset
 
-.
-
+ and
 \family roman
 \series medium
 \shape up
@@ -1874,7 +1851,7 @@ We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
 \uwave off
 \noun off
 \color none
- Let 
+ let 
 \family default
 \series default
 \shape default
@@ -1906,7 +1883,7 @@ We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
 \begin_inset Formula 
 \begin{align}
 \hat{L}_{VUB} & \equiv\nonumber \\
- & \frac{1}{N}\sum_{n=1}^{N}\Bigg[\beta\cdot D_{KL}\left(e_{\phi}(x_{n})\Bigg|\Bigg|r(z)\right)\label{eq:l_vub_empirical}\\
+ & \frac{1}{N}\sum_{n=1}^{N}\Bigg[\beta\cdot D_{KL}\left(e_{\phi}(x_{n})\big|\big|r(z)\right)\label{eq:l_vub_empirical}\\
 - & P^{*}(y_{n})\cdot log\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\nonumber \\
 - & min\left\{ H(\hat{Y}),H\left(C_{\lambda}\left(e_{\phi}(x_{n})\right)\right)\right\} \Bigg]\nonumber 
 \end{align}
@@ -1921,8 +1898,16 @@ As in VIB and VAE
 \begin_inset Formula $e_{\phi}(x)$
 \end_inset
 
- is a computed as spherical gaussian by using the first half of the encoder's
- output entries as 
+ and 
+\begin_inset Formula $r(z)$
+\end_inset
+
+ are computed as spherical gaussians.
+ 
+\begin_inset Formula $e_{\phi}(x)$
+\end_inset
+
+ by using the first half of the encoder's output entries as 
 \begin_inset Formula $\mu$
 \end_inset
 
@@ -1930,7 +1915,11 @@ As in VIB and VAE
 \begin_inset Formula $\Sigma$
 \end_inset
 
-.
+, and 
+\begin_inset Formula $r(z)$
+\end_inset
+
+ by a standard normal gaussian.
 \end_layout
 
 \begin_layout Subsection
@@ -1956,10 +1945,8 @@ citet{Pereyra2017}
 \end_inset
 
 .
- Hence, VUB adds regularization over the classifier preventing it to overfit
- the embeddings.
- This is a possible remedy to the discrepancies in the ELBO loss observed
- by 
+ Hence, VUB adds regularization over the classifier, and is a possible remedy
+ to the discrepancies in the ELBO loss observed by 
 \begin_inset ERT
 status open
 
@@ -1972,8 +1959,21 @@ citet{Alemi2018}
 
 \end_inset
 
+, as elaborated in Section
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Discussion"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -2164,7 +2164,8 @@ cite{ren2019pwws}
 
 .
  All models were trained using an Nvidia RTX3080 GPU.
- Code to reconstruct the experiments is provided in the code & data appendix.
+ Code to reconstruct the experiments is provided in the included code &
+ data supplementary material.
 \end_layout
 
 \begin_layout Subsection
@@ -3024,8 +3025,7 @@ Image-net evaluation scores for vanilla, VIB and VUB models, average over
 \begin_inset Formula $\uparrow$
 \end_inset
 
-).
- Second and third columns are the % of successful FGS attacks at 
+), second and third columns are the % of successful FGS attacks at 
 \begin_inset Formula $\epsilon=0.1,0.5$
 \end_inset
 
@@ -3033,8 +3033,7 @@ Image-net evaluation scores for vanilla, VIB and VUB models, average over
 \begin_inset Formula $\downarrow$
 \end_inset
 
-).
- Fourth column is the average 
+) and the fourth column is the average 
 \begin_inset Formula $L_{2}$
 \end_inset
 
@@ -3092,9 +3091,9 @@ status open
 
 
 \backslash
-ref{fig:untargeted_examples}, 
+ref{fig:targeted_examples}, 
 \backslash
-ref{fig:targeted_examples}
+ref{fig:untargeted_examples}
 \end_layout
 
 \end_inset
@@ -3113,10 +3112,10 @@ ref{tab:imagenet_evaluation}
 
 \end_inset
 
- confirm that while VIB reduces performance on the validation set, it substantia
-lly improves robustness to adversarial attacks.
+ confirm that while VIB and VUB reduce performance on the validation set,
+ they substantially improve robustness to adversarial attacks.
  Moreover, these results demonstrate that VUB significantly outperforms
- VIB in terms of validation accuracy while providing competitive robustness
+ VIB in terms of validation set accuracy while providing competitive robustness
  to attacks similarly to VIB.
  A comparison of the best VIB and VUB models further substantiates these
  findings, with statistical significance confirmed by a p-value of less
@@ -3124,9 +3123,9 @@ lly improves robustness to adversarial attacks.
 \end_layout
 
 \begin_layout Standard
-In addition to the evaluation metrics, we measured approximated rate and
- distortion throughout training and plotted them on the information curve
- as shown in Figure
+In addition to the above evaluation metrics, we also measured approximated
+ rate and distortion throughout training and plotted them on the information
+ curve as shown in Figure
 \begin_inset space ~
 \end_inset
 
@@ -3184,8 +3183,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Estimated information plane metrics per epoch for VUB trained on IMDB with
- 
+Estimated information plane metrics per epoch for VUB trained on the IMDB
+ dataset with 
 \begin_inset Formula $\beta=0.001$
 \end_inset
 
@@ -3278,8 +3277,25 @@ Successful targeted CW attack examples.
 
  distance the greater the visible change required to fool the model.
  Original and wrongly assigned labels are listed at the top of each image.
- Mind the difference in noticeable change as compared to FGS perturbations
- and between VIB and VUB perturbations.
+ Mind the difference in noticeable change as compared to the FGS perturbations
+ presented in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{fig:untargeted_examples}
+\end_layout
+
+\end_inset
+
+, and between VIB and VUB perturbations.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:targeted_examples"
@@ -4042,7 +4058,8 @@ Evaluation for vanilla, VIB and VUB models, average over 5 runs with standard
 \begin_inset Formula $\downarrow$
 \end_inset
 
-), third column is % of successful PWWS attacks (lower is better 
+) and the third column is % of successful PWWS attacks (lower is better
+ 
 \begin_inset Formula $\downarrow$
 \end_inset
 
@@ -4234,7 +4251,7 @@ citet{Chen2018}
  alter latent semantics, making the models more robust to attacks.
  In the case of VUB, the enhanced results induced by classifier regularization
  not only reinforce previous studies on the ELBO function, which suggest
- that overly powerful decoders diminish the quality learned representations
+ that overly powerful decoders diminish the quality of learned representations
  
 \begin_inset ERT
 status open
@@ -4266,13 +4283,13 @@ citet{Pereyra2017}
 \end_layout
 
 \begin_layout Standard
-We also observed that in many cases VIB achieves lower validation set Cross-Entr
-opy while VUB achieves significantly higher test set accuracy.
+We also observed that in many cases VIB achieves lower validation set cross
+ entropy while VUB achieves significantly higher test set accuracy.
  We attribute this gap to the VUB models becoming more calibrated, and we
  suggest that practitioners also monitor validation set accuracy and rate
  distortion ratio and during training.
  These metrics may be more informative indicators of model performance than
- validation set Cross-Entropy alone, as validation Cross-Entropy could increase
+ validation set cross entropy alone, as validation cross entropy could increase
  as models become more calibrated.
  
 \end_layout
@@ -4285,22 +4302,26 @@ We made another interesting observation during our study regarding information
  can occur in cycles throughout training.
  This finding is particularly noteworthy because previous studies observed
  this phenomenon in simple toy problems, whereas our research demonstrated
- it in a complex task with an unknown distribution and high dimensionality.
- This suggests that the behavior of the information plane is not limited
- to simplified scenarios but is a characteristic of the learning process
- in more challenging tasks as well.
+ it in complex tasks of high dimensionality with unknown distributions.
+ This suggests that this information plane behavior is not limited to simplified
+ scenarios but is a characteristic of the learning process in more challenging
+ tasks as well.
  
 \end_layout
 
 \begin_layout Standard
 In conclusion, while the IB and its variational approximations do not provide
  a complete theoretical framework for DNN data modeling and regularization,
- they offer a strong, measurable, and theoretically-grounded approach.
+ they offer a strong, measurable and theoretically-grounded approach.
  VUB is presented as a tractable and tighter upper bound of the IB functional
  that can be easily adapted to any classifier DNN, including transformer
  based text classifiers, to significantly increase robustness to various
- adversarial attacks while inflicting minimal decrease in performance.
- This study opens many opportunities for further research.
+ adversarial attacks while inflicting minimal decrease in test set performance.
+ 
+\end_layout
+
+\begin_layout Standard
+This study opens many opportunities for further research.
  Besides further improvements to the upper bound, it is intriguing to use
  VUB in self-supervised learning and in generative tasks.
  Other possible directions, including measuring model calibration as proposed
@@ -4350,12 +4371,13 @@ Successful untargeted FGS attack examples.
 \end_inset
 
  shown on the left, the higher the more perturbed.
+ Original and wrongly assigned labels are listed at the top of each image.
  Notice the deterioration of image quality as 
 \begin_inset Formula $\epsilon$
 \end_inset
 
  increases.
- Original and wrongly assigned labels are listed at the top of each image.
+ 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:untargeted_examples"

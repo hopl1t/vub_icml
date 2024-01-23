@@ -2019,8 +2019,7 @@ citet{Alemi2017}
 \end_inset
 
 , extending it to NLP tasks as well.
- Image classification models were trained on the first 500,000 samples of
- the ImageNet 2012 dataset 
+ Image classification models were trained on the ImageNet 2012 dataset 
 \begin_inset ERT
 status open
 

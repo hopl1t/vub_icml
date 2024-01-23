@@ -1363,7 +1363,7 @@ citet{Alemi2017}
 \end_inset
 
  are derived from the identity 
-\begin_inset Formula $D_{KL}\left(\text{True probability}\Big|\Big|\text{Variational approximation}\right)\ge0$
+\begin_inset Formula $D_{KL}\left(\text{True probability}\Big|\text{\Big|Variational approximation}\right)\ge0$
 \end_inset
 
  and used to form an upper bound for the IB functional.

@@ -1009,7 +1009,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../aaai/media/black_box_z.png
+	filename ../../aaai/media/black_box.png
 	scale 36
 
 \end_inset
@@ -1038,6 +1038,15 @@ citet{ShwartzZiv2017}
 
 .
  Left are initial weights, Right are at 400 epochs.
+ Where 
+\begin_inset Formula $T$
+\end_inset
+
+ is the hidden variable, analogous to 
+\begin_inset Formula $Z$
+\end_inset
+
+ in the current study.
  Our study reproduced similar yet repetitive behavior on complicated high
  dimensional tasks, as shown in Figure
 \begin_inset space ~

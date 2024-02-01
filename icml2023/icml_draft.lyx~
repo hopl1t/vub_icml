@@ -229,22 +229,18 @@ printAffiliationsAndNotice{}
 \begin_layout Abstract
 Deep Neural Nets (DNNs) learn latent representations induced by their downstream
  task, objective function, and other parameters.
- The quality of data modeling impacts the DNN's generalization ability and
- the coherence of the emerging latent space.
+ The quality of the learned representations impacts the DNN's generalization
+ ability and the coherence of the emerging latent space.
  The Information Bottleneck (IB) provides a hypothetically optimal framework
- for data modeling, but it is often intractable.
- Recent efforts combined deep learning with the IB using VAE-inspired variationa
-l approximations to compute mutual information.
- This work introduces a new and tighter variational upper bound for the
- IB.
- When used as an objective function, it improves the performance of IB-inspired
- DNNs in terms of test accuracy while providing similar or superior robustness
- to adversarial attacks.
+ for data modeling, yet it is often intractable.
+ Recent efforts combined DNNs with the IB by applying VAE-inspired variational
+ methods to approximate bounds on mutual information, resulting in improved
+ robustness to adversarial attacks.
+ This work introduces a new and tighter variational bound for the IB, improving
+ performance of previous IB-inspired DNNs.
  These advancements strengthen the case for the IB and its variational approxima
-tions as a framework for better representation learning, and provides a
- simple method to significantly enhance the adversarial robustness of any
- classifier DNN while suffering only a slight decrease in classification
- accuracy.
+tions as a data modeling framework, and provide a simple method to significantly
+ enhance the adversarial robustness of classifier DNNs.
 \end_layout
 
 \begin_layout Section
@@ -252,10 +248,9 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-In recent years deep neural nets have gained increasing popularity in different
- learning tasks.
- Their ability to approximate complicated functions has revolutionized many
- computational fields.
+In recent years, Deep Neural Networks (DNNs) have gained prominence in various
+ learning tasks, revolutionizing many computational fields with their ability
+ to approximate complex functions.
  Despite the great achievements, it is still postulated that the current
  networks are prone to overfit the training data 
 \begin_inset ERT
@@ -298,11 +293,11 @@ cite{Goodfellow2015}
 
 .
  A question emerges regarding the extraction of an optimal representation
- for all data points from our restricted set of training examples.
+ for all data points from a restricted set of training examples.
  Classic information theory provides tools to optimize compression and transmiss
-ion of data, but it does not provide methods to gauge the relevance of the
- compressed signal to downstream tasks.
- Methods such as rate distortion 
+ion of data, but it does not provide methods to gauge the relevance of a
+ compressed signal to its downstream task.
+ Methods such as rate-distortion 
 \begin_inset ERT
 status open
 
@@ -317,7 +312,7 @@ cite{Blahut1972}
 
  regard all information as equal, not taking into account which information
  is more relevant without constructing complex distortion functions.
- To resolve these limitations, the Information Bottleneck, IB 
+ The Information Bottleneck (IB) 
 \begin_inset ERT
 status open
 
@@ -330,26 +325,22 @@ cite{Tishby1999}
 
 \end_inset
 
-, defines an information theoretic limit for the rate distortion ratio of
- any learning task given a Lagrangian hyper parameter 
+ resolves this limitation by defining mutual information between the learned
+ representation and the downstream task as a universal distortion function.
+ Under this definition, an optimal rate-disotrion ratio can be implicitly
+ computed for a Lagrangian hyper parameter 
 \begin_inset Formula $\beta$
 \end_inset
 
- controlling the tradeoff between the rate and the distortion.
- Optimizing a learning task using the IB objective results in an encoding
- with optimal rate distortion ratio for a downstream task, over a chosen
- Lagrangian 
-\begin_inset Formula $\beta$
-\end_inset
-
- and for a mutual information distortion function.
- Computing the IB requires mutual information calculations which are tractable
- in discrete settings and for some specific continuous distributions.
+, controlling the tradeoff between the desired rate and distortion.
+ However, optimizing over the IB requires mutual information computations,
+ which are tractable in discrete settings and for some specific continuous
+ distributions.
  Adopting the IB framework for DNNs requires computing mutual information
  for unknown distributions and has no analytic solution.
  However, recent work approximated tractable upper bounds for the IB functional
  in DNN settings using variational approximations.
- Variational auto encoders 
+ Variational Auto Encoders (VAEs) 
 \begin_inset ERT
 status open
 
@@ -362,23 +353,8 @@ cite{Kingma2014}
 
 \end_inset
 
- use stochastic DNNs to approximate intractable and unknown distributions.
- Assuming a latent variable model the marginal 
-\begin_inset Formula $p(x)=\int p(x|z)p(z)dz$
-\end_inset
-
- (Where 
-\begin_inset Formula $X$
-\end_inset
-
- is an observed variable and 
-\begin_inset Formula $Z$
-\end_inset
-
- is unobserved) can be approximated using a chosen variational distribution
- optimized to fit the training data.
- This optimization is possible using Stochastic Gradient Descent (SGD) and
- the 'reparameterization trick' as elaborated in Section
+ use stochastic DNNs to approximate intractable distributions, as elaborated
+ in Section
 \begin_inset space ~
 \end_inset
 
@@ -393,7 +369,7 @@ noprefix "false"
 \end_inset
 
 .
- Similarly to VAEs 
+ Similarly to VAEs, 
 \begin_inset ERT
 status open
 
@@ -406,57 +382,33 @@ citet{Alemi2017}
 
 \end_inset
 
- proposed using stochastic DNNs as variational approximations for a latent
- model thus making possible the computations of upper bounds for mutual
- information between the DNN's input, output and hidden layers.
- A proposed optimization method called VIB - 'Deep Variational Information
- Bottleneck' derives an upper bound for the IB objective and minimizes it's
- approximation using Monte Carlo sampling over training data.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-citet{Alemi2017}
-\end_layout
-
-\end_inset
-
- found that replacing a DNN's deterministic classifier layer with a stochastic
- layer optimized with the VIB objective results in a slight decrease in
- test set accuracy but a significant increase in robustness to adversarial
- attacks in complicated classification tasks.
- 
-\end_layout
-
-\begin_layout Standard
-While providing a complete framework for optimal data modeling, the IB,
- and it's variational approximations, rely on three assumptions: (1) It
- suffices to optimize the mutual information metric to optimize a model's
- performance; (2) Forgetting more information about the input while keeping
- the same information about the output induces better generalization; (3)
- Mutual information between the input, output and latent representation
- can be either computed or approximated to a desired level of accuracy.
+ proposed using stochastic DNNs as variational approximations of latent
+ models, thus making possible the computations of upper bounds for mutual
+ information between the DNN's input, output and latent representation.
+ A proposed optimization method called Deep Variational Information Bottleneck
+ (VIB) derives an upper bound for the IB objective and minimizes its approximati
+on by fitting some training dataset.
+ Optimizing classifier DNNs with the VIB objective results in a slight decrease
+ in test set accuracy compared to deterministic DNNs, but yields a significant
+ increase in robustness to adversarial attacks.
 \end_layout
 
 \begin_layout Standard
 In this study, we adopt the same information theoretic and variational approach
- used previously.
- The work begins by deriving an upper bound for the IB functional.
+ proposed in VIB.
+ The work begins by deriving a new upper bound for the IB functional.
  We then employ a tractable variational approximation for this bound, named
  VUB - 'Variational Upper Bound' and show that it is a tighter bound on
  the IB objective than VIB.
  We proceed to show empirical evidence that VUB substantially increases
- test accuracy over VIB while providing similar or superior robustness to
- adversarial attacks across several challenging tasks and different modalities.
+ test set accuracy over VIB while providing similar or superior robustness
+ to adversarial attacks across several challenging tasks and different modalitie
+s.
  Finally, we discuss these effects in the context of previous work on the
- IB and other DNN regularization techniques.
- The conclusion drawn is that while more mutual information between encoding
- and output does not necessarily improve classification, and more compressed
- encoding does not always enhance regularization 
+ IB and on DNN regularization.
+ The conclusion drawn is that while increasing mutual information between
+ encoding and output does not necessarily improve classification, and increasing
+ encoding compression does not always enhance regularization 
 \begin_inset ERT
 status open
 
@@ -471,15 +423,16 @@ cite{Amjad2020}
 
 , the application of IB approximations as objectives to DNNs empirically
  improves regularization, suggesting better data modeling.
- This notion contributes for the adaptation of the IB, and it's variational
- approximations, as an objective to learning tasks and as a theoretic framework
+ This notion contributes for the adaptation of the IB, and its variational
+ approximations, as an objective for learning tasks and as a theoretic framework
  to gauge and explain data modeling.
 \end_layout
 
 \begin_layout Standard
 In addition, we demonstrate that VUB can be easily adapted to any classifier
  DNN, including transformer based NLP classifiers, to substantially increase
- robustness to adversarial attacks while only slightly decreasing test accuracy.
+ robustness to adversarial attacks while only slightly decreasing, or in
+ some cases even increasing, test set accuracy.
 \end_layout
 
 \begin_layout Subsection
@@ -489,7 +442,7 @@ Preliminaries
 \begin_layout Standard
 The following literature review and derivations refer to information theory
  and variational approximations.
- A preliminary mutual ground and notation follows:
+ A preliminary mutual ground and notation is provided.
 \end_layout
 
 \begin_layout Standard
@@ -587,71 +540,18 @@ Let
 \end_inset
 
  the posterior following Bayes' rule.
- Latent models are frequently used for creating variational bounds on mutual
- information as they make good approximations for 
-\begin_inset Formula $p^{*}(x)$
-\end_inset
-
- due to their high expressivity 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-cite{Kingma2019}
+ 
 \end_layout
 
-\end_inset
-
-, as is elaborated in Section
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:variational_approximations"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Deep neural nets, or DNNs, are a powerful tool to approximate complicated
- functions such as modeling 
-\begin_inset Formula $p_{\theta}(y|x)$
-\end_inset
-
- or 
-\begin_inset Formula $p_{\theta}(x)$
-\end_inset
-
-.
- When choosing a DNN to approximate a latent model we encounter a problem
- as the marginal integral 
+\begin_layout Standard
+When modeling an unobserved variable of an unknown distribution we encounter
+ a problem as the marginal 
 \begin_inset Formula $p_{\theta}(x)=\int p_{\theta}(x,z)dz$
 \end_inset
 
- doesn't have an analytic solution and hence not optimizable over gradient
- descent 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-cite{Kingma2019}
-\end_layout
-
-\end_inset
-
-.
- This intractability can be overcome by using a tractable parametric variational
- encoder 
+ doesn't have an analytic solution.
+ This intractability can be overcome by choosing some tractable parametric
+ variational distribution 
 \begin_inset Formula $q_{\phi}(z|x)$
 \end_inset
 
@@ -671,17 +571,30 @@ cite{Kingma2019}
 \begin_inset Formula $p_{\theta}(x,z|y)$
 \end_inset
 
- using Monte Carlo sampling from the dataset 
+ by fitting the dataset 
 \begin_inset Formula $\mathcal{S}$
 \end_inset
 
- during optimization.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Kingma2019}
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
 In this work information theoretic functions share the same notation for
  discrete and continuous settings.
- For brevity, we will only present the continuous versions here:
+ For brevity, we will only present the continuous form:
 \end_layout
 
 \begin_layout Standard
@@ -816,7 +729,7 @@ Related work
 \end_layout
 
 \begin_layout Subsection
-IB and it's analytic solutions
+IB and its analytic solutions
 \end_layout
 
 \begin_layout Standard
@@ -836,10 +749,21 @@ cite{Blahut1972}
  to mitigate signal loss during compression.
  Rate being the signal's compression measured by mutual information between
  input and output signals, and distortion a chosen task-specific function.
- The Information Bottleneck method extends rate-distortion by replacing
- the tailored distortion functions with mutual information over a target
- distribution.
- This allows optimizing a signal's compression to any chosen downstream
+ The Information Bottleneck (IB) method 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cite{Tishby1999}
+\end_layout
+
+\end_inset
+
+ extends rate-distortion by replacing the tailored distortion functions
+ with mutual information between the learned representation and the downstream
  task.
  Denote 
 \begin_inset Formula $X$
@@ -849,22 +773,20 @@ cite{Blahut1972}
 \begin_inset Formula $Z$
 \end_inset
 
- it's encoding and 
+ its encoding and 
 \begin_inset Formula $Y$
 \end_inset
 
- the target signal for some specific downstream task.
- Let 
-\begin_inset Formula $D$
-\end_inset
-
- be a positive minimal threshold for the desired distortion, assume a latent
- variable model with the Markov chain 
+ the target signal for some specific task.
+ Assuming a latent variable model that follows the Markov chain 
 \begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
- and define the distortion function as mutual information between encoding
- and downstream task.
+, we define some positive minimal threshold 
+\begin_inset Formula $D$
+\end_inset
+
+ for the desired distortion.
  We seek an optimal encoding 
 \begin_inset Formula $Z:\underset{P(Z|X)}{min}I(X;Z)$
 \end_inset
@@ -879,11 +801,12 @@ cite{Blahut1972}
 \begin_inset Formula $L_{P(Z|X)}=I(Z;X)-\beta I(Z;Y)$
 \end_inset
 
- over the Lagrangian 
+, the first term being rate and the second distortion modulated by the Lagrangia
+n 
 \begin_inset Formula $\beta$
 \end_inset
 
-, the first term being rate and the second distortion.
+.
  The optimal solution is a function of 
 \begin_inset Formula $\beta$
 \end_inset
@@ -906,6 +829,10 @@ ref{info_plane}
 \end_inset
 
 .
+ The IB can be interpreted as a method to learn a representation that holds
+ just enough information to satisfy a desired task, while discarding all
+ other available information, presumably providing a model with the least
+ possible complexity.
 \begin_inset Float figure
 wide false
 sideways false
@@ -926,7 +853,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The information plane and curve - rate distortion ratio over 
+The information plane and curve: rate-distortion ratio over 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -935,12 +862,13 @@ The information plane and curve - rate distortion ratio over
 \begin_inset Formula $\beta=0$
 \end_inset
 
-, representation is compressed but uninformative (maximal compression),
+ the representation is compressed but uninformative (maximal compression),
  at 
 \begin_inset Formula $\beta\rightarrow\infty$
 \end_inset
 
- it's informative but potentially overfitted (maximal information).
+ the representation is informative but potentially overfitted (maximal informati
+on).
  Adapted from 
 \begin_inset ERT
 status open
@@ -976,21 +904,9 @@ name "info_plane"
 
 \begin_layout Standard
 The IB functional is only tractable when mutual information can be computed
- and was demonstrated by 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-citet{Tishby1999}
-\end_layout
-
-\end_inset
-
- for soft clustering tasks over a discrete and known distribution 
-\begin_inset Formula $P^{*}(x,y)$
+ and was originally demonstrated for soft clustering tasks over a discrete
+ and known distribution 
+\begin_inset Formula $P^{*}(X,Y)$
 \end_inset
 
 .
@@ -1040,13 +956,11 @@ citet{Tishby2015}
 
 \end_inset
 
- proposed an IB interpretation of DNNs regarding them as Markov cascades
+ proposed an IB interpretation of DNNs, regarding them as Markov cascades
  of intermediate representations between hidden layers.
- Neural architecture and dataset cardinality are theoretically sufficient
- to compute the optimal rate distortion of a DNN on the information curve.
- This suggests a model 'complexity gap' between the achieved and the optimal
- IB compression rate for that setting, and it is hypothesized that bridging
- this gap will result in optimal generalization.
+ Under this framework, comparing the optimal and the achieved rate-distortion
+ ratios between DNN layers will indicate if a model is too complex or too
+ simple for given task and training set.
  
 \begin_inset ERT
 status open
@@ -1064,11 +978,11 @@ citet{ShwartzZiv2017}
  problem with a known joint distribution.
  Mutual information of the different layers was estimated and used to analyze
  the training process.
- SGD exhibited two separate and sequential behaviors during training: A
- short empirical error minimization phase (ERM) characterized by larger
- gradient norms and a rapid decrease in distortion, followed by a long compressi
-on phase with smaller gradient norms and an increase in rate until convergence
- to an optimal IB limit as demonstrated in Figure
+ The learning process over Stochastic Gradient Descent (SGD) exhibited two
+ separate and sequential behaviors: A short Empirical Error Minimization
+ phase (ERM) characterized by a rapid decrease in distortion, followed by
+ a long compression phase with an increase in rate until convergence to
+ an optimal IB limit as demonstrated in Figure
 \begin_inset space ~
 \end_inset
 
@@ -1231,7 +1145,8 @@ citet{Kingma2014}
 
 \end_inset
 
- introduced the variational auto encoder - a stochastic generative DNN.
+ introduced the Variational Auto Encoder (VAE) - a stochastic generative
+ DNN.
  An unobserved RV 
 \begin_inset Formula $Z$
 \end_inset
@@ -1306,7 +1221,7 @@ citet{Higgins2017}
 \begin_inset Formula $\beta$
 \end_inset
 
--autoencoder introducing a hyper parameter 
+-autoencoder, introducing a hyper parameter 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -1331,16 +1246,22 @@ citet{Alemi2018}
 \end_inset
 
 , hence not necessarily a better representation learned.
- This gap is attributed to powerful decoders being overfitted.
- It is suggested to keep 
-\begin_inset Formula $\beta$
+ This gap is attributed to powerful decoders being overfitted, as will be
+ further discussed in Section
+\begin_inset space ~
 \end_inset
 
- values under 
-\begin_inset Formula $1$
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Discussion"
+plural "false"
+caps "false"
+noprefix "false"
+
 \end_inset
 
- and monitor the rate-distortion tradeoff as well as cross entropy loss.
+.
 \end_layout
 
 \begin_layout Standard
@@ -1358,21 +1279,23 @@ citet{Alemi2017}
 
  introduced the Variational Information Bottleneck (VIB) as a variational
  approximation for an upper bound to the IB objective for classifier DNN
- optimization: Upper bounds for 
-\begin_inset Formula $I(Z,Y),I(X,Z)$
+ optimization.
+ Bounds for 
+\begin_inset Formula $I(Z,Y)$
 \end_inset
 
- are derived from the identity 
-\begin_inset Formula $D_{KL}\left(\text{True probability}\Big|\text{\Big|Variational approximation}\right)\ge0$
+ and 
+\begin_inset Formula $I(X,Z)$
 \end_inset
 
- and used to form an upper bound for the IB functional.
+ are derived from the non negativity of KL divergence and are used to form
+ an upper bound for the IB functional.
  This upper bound is approximated using variational approximations for 
-\begin_inset Formula $p^{*}(y|z),p^{*}(z)$
+\begin_inset Formula $p^{*}(y|z),\,p^{*}(z)$
 \end_inset
 
- similarly to VAEs.
- This approximation to an upper bound over the IB objective is empirically
+ as done in VAEs.
+ This approximation of an upper bound for the IB objective is empirically
  estimated as cross entropy and a beta scaled KL regularization term as
  in 
 \begin_inset Formula $\beta$
@@ -1380,9 +1303,9 @@ citet{Alemi2017}
 
 -autoencoders, and is optimized over the training data using Monte Carlo
  sampling and the reparameterization trick.
- VIB was evaluated over MNIST and ImageNet and, while causing a slight reduction
- in test set accuracy, it generated substantial improvements in robustness
- to adversarial attacks.
+ VIB was evaluated over image classification tasks and, while causing a
+ slight reduction in test set accuracy, generated substantial improvements
+ in robustness to adversarial attacks.
 \end_layout
 
 \begin_layout Standard
@@ -1437,15 +1360,15 @@ cite{Pereyra2017}
 
  both regularize classifier DNNs by increasing the entropy of their output.
  This is done either directly by inserting a scaled conditional entropy
- term in the loss function 
-\begin_inset Formula $-\gamma\cdot H\left(p_{\theta}(y|x)\right),$
+ term to the loss function 
+\begin_inset Formula $-\gamma\cdot H\left(p_{\theta}(y|x)\right)$
 \end_inset
 
- or by smoothing the training data labels.
+, or by smoothing the training data labels.
  Applying both methods was demonstrated to improve test accuracy and model
  calibration on various challenging classification tasks.
  In the current work a similar conditional entropy term emerges from the
- derivation of the new upper bound for the IB objective as shown in Section
+ derivation of the new upper bound for the IB objective, as shown in Section
 \begin_inset space ~
 \end_inset
 
@@ -1474,67 +1397,41 @@ name "sec:vub"
 \end_layout
 
 \begin_layout Standard
-The VIB loss 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-cite{Alemi2017}
-\end_layout
-
-\end_inset
-
- consists of a cross entropy term and a KL regularization term, similar
- to the VAE loss.
+The VIB loss consists of a cross entropy term and a KL regularization term,
+ as in VAE loss.
  The KL term is derived from a bound on the IB rate term 
 \begin_inset Formula $I(X;Z)$
 \end_inset
 
-, while the 
-\begin_inset Formula $CE$
-\end_inset
-
- term from a bound on the IB distortion term 
+, while the cross entropy term from a bound on the IB distortion term 
 \begin_inset Formula $I(Z;Y)=H(Y)-H(Y|Z)$
 \end_inset
 
 .
- When deriving the bound on the distortion term the entropy term 
+ When deriving the latter the entropy term 
 \begin_inset Formula $H(Y)$
 \end_inset
 
- is ignored as it is constant and does not effect optimization, while the
- conditional entropy term 
-\begin_inset Formula $H(Y|Z)$
-\end_inset
-
- is derived into a cross entropy term.
+ is ignored as it is constant and does not effect optimization.
  We note that since 
 \begin_inset Formula $Y$
 \end_inset
 
- is unknown any optimization on 
+ is unknown any optimization over 
 \begin_inset Formula $Z$
 \end_inset
 
-, including 
-\begin_inset Formula $CE$
-\end_inset
-
-, depends on our decoder model of 
+, including cross entropy, depends on our decoder model of 
 \begin_inset Formula $Y$
 \end_inset
 
 .
- Following this logic we replace 
+ Following this logic, instead of omitting 
 \begin_inset Formula $H(Y)$
 \end_inset
 
- with a tractable variational approximation for the decoder entropy which
- provides a lower bound.
+ we replace it with a variational approximation of the decoder entropy,
+ which provides a lower bound.
 \end_layout
 
 \begin_layout Subsection
@@ -1590,13 +1487,30 @@ For any probability distribution
 \end_layout
 
 \begin_layout Standard
-And so:
+And so by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{eq:d_kl}
+\end_layout
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-I(Z;X)\overset{\ref{eq:d_kl}}{\le}\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\label{eq:i_z_x2}
+I(Z;X)\le\int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\label{eq:i_z_x2}
 \end{equation}
 
 \end_inset
@@ -1636,15 +1550,32 @@ For any probability distribution
 \end_layout
 
 \begin_layout Standard
-And so:
+And so by Equation
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{eq:d_kl2}
+\end_layout
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
 I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)dydz\nonumber \\
-\overset{\text{\ref{eq:d_kl2}}}{\ge} & \int\int p^{*}(y|z)p^{*}(z)log\left(\frac{c(y|z)}{p^{*}(y)}\right)dydz\nonumber \\
-\overset{\text{}}{=} & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz+H_{p^{*}}(Y)\label{eq:i_z_y}
+\ge & \int\int p^{*}(y|z)p^{*}(z)log\left(\frac{c(y|z)}{p^{*}(y)}\right)dydz\nonumber \\
+= & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz+H_{p^{*}}(Y)\label{eq:i_z_y}
 \end{align}
 
 \end_inset
@@ -1653,7 +1584,7 @@ I(Z;Y)= & \int\int p^{*}(y,z)log\left(\frac{p^{*}(y,z)}{p^{*}(y)p^{*}(z)}\right)
 \end_layout
 
 \begin_layout Standard
-We diverge from the VIB derivation by replacing 
+We now diverge from the original VIB derivation by replacing 
 \begin_inset Formula $H_{p^{*}}(Y)$
 \end_inset
 
@@ -1661,26 +1592,26 @@ We diverge from the VIB derivation by replacing
 \begin_inset Formula $H_{c}(Y|Z)$
 \end_inset
 
- instead of ommiting it.
- Although 
-\begin_inset Formula $H(Y)\ge H(Y|Z)$
+ instead of omitting it.
+ In addition, we limit the new term to make sure that the inequality 
+\begin_inset Formula $H(Y|Z)\le H(Y)$
 \end_inset
 
- for any distribution, we limit the value of 
-\begin_inset Formula $H_{c}(Y|Z)$
+ holds when computing over the different distributions 
+\begin_inset Formula $p^{*}$
 \end_inset
 
- not to exceed 
-\begin_inset Formula $H_{p^{*}}(Y)$
+ and 
+\begin_inset Formula $c$
 \end_inset
 
- as both are not equivalent:
+.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
-\ge & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz\nonumber \\
+I(Z;Y)\ge & \int\int p^{*}(y,z)log\left(c(y|z)\right)dydz\nonumber \\
 + & min\left\{ H_{p^{*}}(Y),H_{c}(Y|Z)\right\} \label{eq:i_z_y2}
 \end{align}
 
@@ -1690,7 +1621,7 @@ We diverge from the VIB derivation by replacing
 \end_layout
 
 \begin_layout Standard
-We further develop this term using the markov chain 
+We further develop this term using the IB Markov chain 
 \begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
@@ -1711,7 +1642,7 @@ We further develop this term using the markov chain
 \end_layout
 
 \begin_layout Standard
-We define a new upper bound for the IB functional named 
+Finally, we define a new upper bound for the IB functional named 
 \begin_inset Formula $L_{UB}$
 \end_inset
 
@@ -1894,7 +1825,7 @@ We proceed to model VUB using DNNs and optimize it using Monte Carlo sampling
 \end_layout
 
 \begin_layout Standard
-As in VIB and VAE 
+As in VIB and VAE, 
 \begin_inset Formula $e_{\phi}(x)$
 \end_inset
 
@@ -1927,11 +1858,7 @@ Interpretation
 \end_layout
 
 \begin_layout Standard
-VUB is in fact VIB regulated by a conditional entropy term 
-\begin_inset Formula $-H(Y|Z)$
-\end_inset
-
- similarly to the confidence penalty suggested by 
+Similarly to the confidence penalty suggested by 
 \begin_inset ERT
 status open
 
@@ -1944,9 +1871,9 @@ citet{Pereyra2017}
 
 \end_inset
 
-.
- Hence, VUB adds regularization over the classifier, and is a possible remedy
- to the discrepancies in the ELBO loss observed by 
+, the new derivation adds classifier regularization to the VIB objective.
+ Regularizing the classifier might prevent it from overfitting, and is a
+ possible remedy to the discrepancies in the ELBO loss observed by 
 \begin_inset ERT
 status open
 
@@ -2141,9 +2068,7 @@ status open
 
 
 \backslash
-cite{gao2018deepwordbug}, 
-\backslash
-cite{Morris2020}
+cite{gao2018deepwordbug}
 \end_layout
 
 \end_inset
@@ -2156,7 +2081,9 @@ status open
 
 
 \backslash
-cite{ren2019pwws}
+cite{ren2019pwws}, 
+\backslash
+cite{Morris2020}
 \end_layout
 
 \end_inset
@@ -3115,53 +3042,13 @@ ref{tab:imagenet_evaluation}
  they substantially improve robustness to adversarial attacks.
  Moreover, these results demonstrate that VUB significantly outperforms
  VIB in terms of validation set accuracy while providing competitive robustness
- to attacks similarly to VIB.
+ to attacks.
  A comparison of the best VIB and VUB models further substantiates these
  findings, with statistical significance confirmed by a p-value of less
  than 0.05 in a Wilcoxon rank sum test.
 \end_layout
 
 \begin_layout Standard
-In addition to the above evaluation metrics, we also measured approximated
- rate and distortion throughout training and plotted them on the information
- curve as shown in Figure
-\begin_inset space ~
-\end_inset
-
-
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{estimated_info_plane}
-\end_layout
-
-\end_inset
-
-.
- We notice recurring patterns of distortion reduction followed by rate increase,
- resembling the ERM and representation compression stages described by 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-citet{ShwartzZiv2017}
-\end_layout
-
-\end_inset
-
-.
-
-\series bold
- 
-\series default
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -3332,7 +3219,7 @@ cite{Devlin2019}
 
 \end_inset
 
- base model was used and achieved a 95.5% accuracy on the
+ base model was used and achieved a 93.0% accuracy on the
 \series bold
  
 \series default
@@ -3383,9 +3270,51 @@ ref{tab:text_attack_examples}
 .
  In this modality VUB significantly outperforms VIB in both test set accuracy
  and robustness to both attacks.
+ Moreover, VUB also outperomed the original model in terms of test set accuracy.
  A comparison of the best VIB and VUB models further substantiates these
  findings, with statistical significance confirmed by a p-value of less
  than 0.05 in a Wilcoxon rank sum test.
+\end_layout
+
+\begin_layout Standard
+In addition to the above evaluation metrics, we also measured approximated
+ rate and distortion throughout training and plotted them on the information
+ curve as shown in Figure
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{estimated_info_plane}
+\end_layout
+
+\end_inset
+
+.
+ We notice recurring patterns of distortion reduction followed by rate increase,
+ resembling the ERM and representation compression stages described by 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+citet{ShwartzZiv2017}
+\end_layout
+
+\end_inset
+
+.
+
+\series bold
+ 
 \end_layout
 
 \begin_layout Standard
@@ -3520,7 +3449,7 @@ Vanilla model
 \begin_layout Plain Layout
 
 \series bold
-95.5%
+93.0%
 \end_layout
 
 \end_inset
@@ -3531,7 +3460,7 @@ Vanilla model
 \begin_layout Plain Layout
 
 \series bold
-75.9%
+54.3%
 \end_layout
 
 \end_inset
@@ -4213,6 +4142,16 @@ name "sec:Discussion"
 \end_layout
 
 \begin_layout Standard
+While providing a complete framework for optimal data modeling, the IB,
+ and it’s variational approximations, rely on three assumptions: (1) It
+ suffices to optimize the mutual information metric to optimize a model’s
+ performance; (2) Forgetting more information about the input while keeping
+ the same information about the output induces better generalization; (3)
+ Mutual information between the input, output and latent representation
+ can be either computed or approximated to a desired level of accuracy.
+\end_layout
+
+\begin_layout Standard
 Our study strengthens the argument for using the Information Bottleneck
  combined with variational approximations to obtain robust models that can
  withstand adversarial attacks.
@@ -4282,11 +4221,11 @@ citet{Pereyra2017}
 \end_layout
 
 \begin_layout Standard
-We also observed that in many cases VIB achieves lower validation set cross
- entropy while VUB achieves significantly higher test set accuracy.
+In addition, we observed that in many cases VIB achieves lower validation
+ set cross entropy while VUB achieves significantly higher test set accuracy.
  We attribute this gap to the VUB models becoming more calibrated, and we
- suggest that practitioners also monitor validation set accuracy and rate
- distortion ratio and during training.
+ suggest that practitioners also monitor validation set accuracy and rate-distor
+tion ratio during training.
  These metrics may be more informative indicators of model performance than
  validation set cross entropy alone, as validation cross entropy could increase
  as models become more calibrated.
@@ -4311,11 +4250,12 @@ We made another interesting observation during our study regarding information
 \begin_layout Standard
 In conclusion, while the IB and its variational approximations do not provide
  a complete theoretical framework for DNN data modeling and regularization,
- they offer a strong, measurable and theoretically-grounded approach.
+ they offer a strong, measurable and theoretically grounded approach.
  VUB is presented as a tractable and tighter upper bound of the IB functional
  that can be easily adapted to any classifier DNN, including transformer
  based text classifiers, to significantly increase robustness to various
- adversarial attacks while inflicting minimal decrease in test set performance.
+ adversarial attacks while inflicting minimal decrease in test set performance,
+ and in some cases even increasing it.
  
 \end_layout
 

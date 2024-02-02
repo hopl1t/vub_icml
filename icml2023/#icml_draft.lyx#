@@ -385,9 +385,9 @@ citet{Alemi2017}
  proposed using stochastic DNNs as variational approximations of latent
  models, thus making possible the computations of upper bounds for mutual
  information between the DNN's input, output and latent representation.
- A proposed optimization method called Deep Variational Information Bottleneck
- (VIB) derives an upper bound for the IB objective and minimizes its approximati
-on by fitting some training dataset.
+ A proposed DNN optimization method called Deep Variational Information
+ Bottleneck (VIB) derives an upper bound for the IB objective and minimizes
+ its approximation by fitting some training dataset.
  Optimizing classifier DNNs with the VIB objective results in a slight decrease
  in test set accuracy compared to deterministic DNNs, but yields a significant
  increase in robustness to adversarial attacks.
@@ -407,8 +407,9 @@ s.
  Finally, we discuss these effects in the context of previous work on the
  IB and on DNN regularization.
  The conclusion drawn is that while increasing mutual information between
- encoding and output does not necessarily improve classification, and increasing
- encoding compression does not always enhance regularization 
+ encoding and output does not necessarily improve classification, and while
+ increasing encoding compression does not always enhance regularization
+ 
 \begin_inset ERT
 status open
 
@@ -649,7 +650,7 @@ Cross
 \end_layout
 
 \begin_layout Plain Layout
-entropy
+Entropy
 \end_layout
 
 \end_inset
@@ -676,7 +677,7 @@ KL
 \end_layout
 
 \begin_layout Plain Layout
-divergence
+Divergence
 \end_layout
 
 \end_inset
@@ -699,7 +700,7 @@ divergence
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mutual information
+Mutual Information
 \end_layout
 
 \end_inset
@@ -811,7 +812,7 @@ n
 \begin_inset Formula $\beta$
 \end_inset
 
- and was named 'the information curve' as shown in Figure
+ and was named 'the information curve' as illustrated in Figure
 \begin_inset space ~
 \end_inset
 
@@ -960,7 +961,7 @@ citet{Tishby2015}
  of intermediate representations between hidden layers.
  Under this framework, comparing the optimal and the achieved rate-distortion
  ratios between DNN layers will indicate if a model is too complex or too
- simple for given task and training set.
+ simple for a given task and training set.
  
 \begin_inset ERT
 status open
@@ -1000,6 +1001,12 @@ ref{shwartz_ziv_info_plane}
 \end_inset
 
 .
+ Similar yet repetative behavior was observed in the current study, as elaborate
+d in Section
+\begin_inset space ~
+\end_inset
+
+.subsec:Evaluation-and-analysis
 \begin_inset Float figure
 wide false
 sideways false
@@ -1009,7 +1016,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename ../../aaai/media/black_box.png
+	filename ../../aaai/media/black_box_z.png
 	scale 36
 
 \end_inset
@@ -1038,15 +1045,6 @@ citet{ShwartzZiv2017}
 
 .
  Left are initial weights, Right are at 400 epochs.
- Where 
-\begin_inset Formula $T$
-\end_inset
-
- is the hidden variable, analogous to 
-\begin_inset Formula $Z$
-\end_inset
-
- in the current study.
  Our study reproduced similar yet repetitive behavior on complicated high
  dimensional tasks, as shown in Figure
 \begin_inset space ~
@@ -3230,6 +3228,13 @@ IMDB sentiment analysis test set.
 
 \begin_layout Subsubsection
 Evaluation and analysis
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Evaluation-and-analysis"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard

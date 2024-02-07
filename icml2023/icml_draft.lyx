@@ -328,7 +328,7 @@ cite{Tishby1999}
  resolves this limitation by defining mutual information between the learned
  representation and the downstream task as a universal distortion function.
  Under this definition, an optimal rate-disotrion ratio can be implicitly
- computed for a Lagrangian hyper parameter 
+ computed for a Lagrange multiplier 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -457,7 +457,7 @@ We denote random variables (RVs) with upper cased letters
 
 .
  Denote discrete Probability Mass Functions (PMFs) with an upper case 
-\begin_inset Formula $P(X)$
+\begin_inset Formula $P(x)$
 \end_inset
 
  and continuous Probability Density Functions (PDFs) with a lower case 
@@ -802,8 +802,8 @@ cite{Tishby1999}
 \begin_inset Formula $L_{P(Z|X)}=I(Z;X)-\beta I(Z;Y)$
 \end_inset
 
-, the first term being rate and the second distortion modulated by the Lagrangia
-n 
+, the first term being rate and the second distortion modulated by the Lagrange
+ multiplier 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -907,7 +907,7 @@ name "info_plane"
 The IB functional is only tractable when mutual information can be computed
  and was originally demonstrated for soft clustering tasks over a discrete
  and known distribution 
-\begin_inset Formula $P^{*}(X,Y)$
+\begin_inset Formula $P^{*}(x,y)$
 \end_inset
 
 .

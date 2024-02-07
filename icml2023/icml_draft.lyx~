@@ -328,7 +328,7 @@ cite{Tishby1999}
  resolves this limitation by defining mutual information between the learned
  representation and the downstream task as a universal distortion function.
  Under this definition, an optimal rate-disotrion ratio can be implicitly
- computed for a Lagrangian hyper parameter 
+ computed for a Lagrange multiplier 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -457,7 +457,7 @@ We denote random variables (RVs) with upper cased letters
 
 .
  Denote discrete Probability Mass Functions (PMFs) with an upper case 
-\begin_inset Formula $P(X)$
+\begin_inset Formula $P(x)$
 \end_inset
 
  and continuous Probability Density Functions (PDFs) with a lower case 
@@ -802,8 +802,8 @@ cite{Tishby1999}
 \begin_inset Formula $L_{P(Z|X)}=I(Z;X)-\beta I(Z;Y)$
 \end_inset
 
-, the first term being rate and the second distortion modulated by the Lagrangia
-n 
+, the first term being rate and the second distortion modulated by the Lagrange
+ multiplier 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -4197,7 +4197,7 @@ While providing a complete framework for optimal data modeling, the IB,
  We demonstrate that VUB outperforms the Variational Information Bottleneck
  (VIB) in terms of test accuracy while providing similar or superior robustness
  to adversarial attacks in challenging classification tasks of different
- modalities.
+ modalities, suggesting an improvement in data modeling quality.
 \end_layout
 
 \begin_layout Standard

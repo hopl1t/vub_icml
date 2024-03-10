@@ -907,7 +907,7 @@ name "info_plane"
 The IB functional is only tractable when mutual information can be computed
  and was originally demonstrated for soft clustering tasks over a discrete
  and known distribution 
-\begin_inset Formula $P^{*}(X,Y)$
+\begin_inset Formula $P^{*}(x,y)$
 \end_inset
 
 .

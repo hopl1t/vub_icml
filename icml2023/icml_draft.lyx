@@ -1141,9 +1141,9 @@ citet{Amjad2020}
 \end_inset
 
  is discrete the IB functional is a piecewise constant function of the parameter
-s, making it's SGD optimization difficult or impossible; (3) Equivalent
- representations might yield the same IB loss while one achieved better
- classification rate than the other.
+s, making its SGD optimization difficult or impossible; (3) Equivalent represent
+ations might yield the same IB loss while one achieved better classification
+ rate than the other.
  These discrepancies were attributed to mutual information's invariance
  to invertible transformations and to the absence of a decision function
  in the objective.
@@ -1212,7 +1212,7 @@ citet{Kingma2014}
 \begin_inset Formula $q_{\phi}(z|x)$
 \end_inset
 
- is modeled using a stochastic neural encoder having it's final activation
+ is modeled using a stochastic neural encoder having its final activation
  used as parameters for the assumed variational distribution (typically
  a spherical gaussian with parameters 
 \begin_inset Formula $\mu,\Sigma$
@@ -1661,7 +1661,7 @@ We further develop this term using the IB Markov chain
 \begin{align}
  & I(Z;Y)\ge\nonumber \\
  & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\nonumber \\
-- & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:i_z_y3}
++ & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:i_z_y3}
 \end{align}
 
 \end_inset
@@ -1709,7 +1709,7 @@ ref{eq:i_z_y3}
  & L_{UB}\equiv\nonumber \\
  & \int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\nonumber \\
 - & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\nonumber \\
-+ & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:l_ub}
+- & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:l_ub}
 \end{align}
 
 \end_inset
@@ -4192,7 +4192,7 @@ While providing a complete framework for optimal data modeling, the IB,
  Our study strengthens the argument for using the Information Bottleneck
  combined with variational approximations to obtain robust models that can
  withstand adversarial attacks.
- By deriving a tighter bound on the IB functional, we demonstrate it's utility
+ By deriving a tighter bound on the IB functional, we demonstrate its utility
  as the Variational Upper Bound (VUB) objective for neural networks.
  We demonstrate that VUB outperforms the Variational Information Bottleneck
  (VIB) in terms of test accuracy while providing similar or superior robustness

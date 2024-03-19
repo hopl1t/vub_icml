@@ -779,11 +779,32 @@ cite{Tishby1999}
 \end_inset
 
  the target signal for some specific task.
- Assuming a latent variable model that follows the Markov chain 
+ Since 
+\begin_inset Formula $Z$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $X$
+\end_inset
+
+, it is independent of 
+\begin_inset Formula $Y$
+\end_inset
+
+ given 
+\begin_inset Formula $X$
+\end_inset
+
+, hence 
+\begin_inset Formula $Z\perp Y|X$
+\end_inset
+
+, and the Markov chain 
 \begin_inset Formula $Z\leftrightarrow X\leftrightarrow Y$
 \end_inset
 
-, we define some positive minimal threshold 
+ follows.
+ We define some positive minimal threshold 
 \begin_inset Formula $D$
 \end_inset
 
@@ -1706,7 +1727,7 @@ ref{eq:i_z_y3}
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align}
- & L_{UB}\equiv\nonumber \\
+ & L_{IB}\le L_{UB}\equiv\nonumber \\
  & \int\int p^{*}(x)p^{*}(z|x)log\left(\frac{p^{*}(z|x)}{r(z)}\right)dxdz\nonumber \\
 - & \int\int\int p^{*}(x)p^{*}(y|x)p^{*}(z|x)log\left(c(y|z)\right)dxdydz\nonumber \\
 - & min\left\{ H_{p^{*}}(Y),-\int\int c(y,z)log\left(c(y|z)\right)dydz\right\} \label{eq:l_ub}
@@ -1770,7 +1791,7 @@ Following the same variational approach as in VIB, we define
 - & \int\int\int p^{*}(x)p^{*}(y|x)e(z|x)log\left(c(y|z)\right)dxdydz\label{eq:l_vub}\\
 - & min\Bigg\{ H_{p^{*}}(Y),\nonumber \\
  & -\int\int\int p^{*}(x)e(z|x)c(y|z)log\left(c(y|z)\right)dxdydz\Bigg\}\nonumber \\
-\ge & L_{IB}\nonumber 
+\approx & L_{UB}\nonumber 
 \end{align}
 
 \end_inset
